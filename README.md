@@ -1,6 +1,13 @@
 # PrintForms
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+## Dev Setting
+
+After cloning the repository run following command in terminal for starting server and adding dependency<br>
+`cd print-forms`<br><br>
+`brew install http-server` (Install http-server for checking coverage)<br><br>
+`npm install -g @angular/cli`<br><br>
+`npm install`<br><br>
+`ng serve --open`
 
 ## Development server
 
@@ -22,6 +29,9 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Check coverage in your browser
+
+Run `ng test` for running the test.<br><br>
+Run `http-server -c-1 -o -p 9875 ./coverage` to check coverage in your browser.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
