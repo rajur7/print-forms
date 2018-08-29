@@ -7,8 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "precommit": "ng lint && echo \"Please fire 'http-server -c-1 -o -p 9875 ./coverage' to check test coverage \" && ng test && ng e2e",
-    "prepush": "ng lint && echo \"Please fire 'http-server -c-1 -o -p 9875 ./coverage' to check test coverage \" && ng test && ng e2e",
+    "precommit": "ng lint && echo \"Please fire 'http-server -c-1 -o -p 9875 ./coverage' to check test coverage \" && ng test ",
+    "prepush": "ng lint && echo \"Please fire 'http-server -c-1 -o -p 9875 ./coverage' to check test coverage \" && ng test ",
     "e2e": "ng e2e"
   },
   "private": true,
