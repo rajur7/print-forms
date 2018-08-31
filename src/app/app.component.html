@@ -1,3 +1,8 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <app-header></app-header>
-<router-outlet></router-outlet>
+<div *ngIf="hasPrivilege">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="hasPrivilege === false">
+  <app-error-message errorMessage="{{noPrivilegeError}}"></app-error-message>
+</div>
+
