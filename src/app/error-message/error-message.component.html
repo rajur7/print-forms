@@ -1,0 +1,7 @@
+<div class="error-message-container" *ngIf="hasVisibility">
+  <div class="message">{{errorMessage}}</div>
+  <div class="button-wrapper">
+    <button type="button" (click)="copyMessage()" class="copy-btn fl">Copy Error</button>
+    <button type="button" (click)="hideMessage()" class="show-btn fr">OK</button>
+  </div>
+</div>
