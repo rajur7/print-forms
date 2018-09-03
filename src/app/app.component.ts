@@ -1,6 +1,7 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {UserService} from './user.service';
 import {Constants} from './constants';
+import {ConceptsService} from './concepts.service';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +11,19 @@ import {Constants} from './constants';
 export class AppComponent implements OnInit, DoCheck {
   title = 'print-forms';
   privileges: Array<{ name: String }>;
+  listOfForms: Array<String>;
   hasPrivilege: boolean;
   noPrivilegeError = Constants.NO_PRIVILEGE_ERROR;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private conceptService: ConceptsService) {
   }
 
   ngOnInit() {
     this.userService.getUserPrivileges().subscribe((response: Array<{ name: String }>) =>
       this.privileges = response
     );
+    this.conceptService.getListOfForms().subscribe((response: {result: any}) => {
+    });
   }
 
   ngDoCheck() {
@@ -34,4 +38,5 @@ export class AppComponent implements OnInit, DoCheck {
       }
     }
   }
+
 }

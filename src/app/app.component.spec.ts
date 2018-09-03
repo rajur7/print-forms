@@ -4,12 +4,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { UserService } from './user.service';
+import {ConceptsService} from './concepts.service';
 import { instance, mock, verify, when } from 'ts-mockito';
 import { Observable } from 'rxjs';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
+  const ConceptServiceMock: ConceptsService = mock(ConceptsService);
   const userServiceMock: UserService = instance(UserServiceMock);
+  const conceptServiceMock: ConceptsService = instance(ConceptServiceMock);
   let fixture: any;
   let app: any;
 
@@ -23,21 +26,24 @@ describe('AppComponent', () => {
         HeaderComponent,
         ErrorMessageComponent
       ],
-      providers : [{ provide: UserService, useValue: userServiceMock}]
+      providers : [{ provide: UserService, useValue: userServiceMock}, {provide: ConceptsService, useValue: conceptServiceMock}]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
     when(UserServiceMock.getUserPrivileges()).thenReturn(mock(Observable));
-  }));
+    when(ConceptServiceMock.getListOfForms()).thenReturn(mock(Observable));
 
-  it('should create the app', async(() => {
-    expect(app).toBeTruthy();
   }));
 
   it('should call getUserPrivileges on app initialization', async(() => {
     app.ngOnInit();
 
     verify(UserServiceMock.getUserPrivileges()).called();
+  }));
+
+  it('should call getListOfForms on app initialization', async(() => {
+    app.ngOnInit();
+    verify(ConceptServiceMock.getListOfForms()).called();
   }));
 
   it('should set hasPrivilege to true when there is app:print-forms privilege', async(() => {
