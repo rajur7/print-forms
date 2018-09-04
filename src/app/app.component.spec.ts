@@ -7,6 +7,9 @@ import { UserService } from './user.service';
 import {ConceptsService} from './concepts.service';
 import { instance, mock, verify, when } from 'ts-mockito';
 import { Observable } from 'rxjs';
+import { FormListComponent } from './form-list/form-list.component';
+import { FilterPipe } from './filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
@@ -19,12 +22,15 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       declarations: [
         AppComponent,
         HeaderComponent,
-        ErrorMessageComponent
+        ErrorMessageComponent,
+        FormListComponent,
+        FilterPipe
       ],
       providers : [{ provide: UserService, useValue: userServiceMock}, {provide: ConceptsService, useValue: conceptServiceMock}]
     }).compileComponents();
@@ -89,5 +95,13 @@ describe('AppComponent', () => {
 
     expect(compiled.querySelector('router-outlet')).toBe(null);
     expect(compiled.querySelector('app-error-message')).not.toBe(null);
+  }));
+
+  it('should render form-list component', async(() => {
+    app.hasPrivilege = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-form-list')).not.toBe(null);
   }));
 });
