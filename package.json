@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng test && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "precommit": "ng lint && echo \"Please fire 'http-server -c-1 -o -p 9875 ./coverage' to check test coverage \" && ng test ",
