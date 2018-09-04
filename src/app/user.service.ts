@@ -6,12 +6,11 @@ import {Constants} from './constants';
   providedIn: 'root'
 })
 export class UserService {
-  private WHOAMI = 'bahmnicore/whoami';
 
   constructor(private  httpClient: HttpClient) {
   }
 
   getUserPrivileges() {
-    return this.httpClient.get(Constants.OPENMRS_ROOT_URL + this.WHOAMI);
+    return this.httpClient.get(Constants.OPENMRS_ROOT_URL + Constants.WHOAMI_URL);
   }
 }

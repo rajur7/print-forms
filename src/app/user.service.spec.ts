@@ -27,7 +27,7 @@ describe('UserService', () => {
   it('should make a get call on http with whoami parameter', () => {
     service.getUserPrivileges().subscribe(() => {
     });
-    const testRequest = httpMock.expectOne(Constants.OPENMRS_ROOT_URL + 'bahmnicore/whoami');
+    const testRequest = httpMock.expectOne(Constants.OPENMRS_ROOT_URL + Constants.WHOAMI_URL);
     expect(testRequest.request.method).toBe('GET');
   });
 });
