@@ -11,22 +11,23 @@ import {ConceptsService} from './concepts.service';
 export class AppComponent implements OnInit, DoCheck {
   title = 'print-forms';
   privileges: Array<{ name: String }>;
-  listOfForms: Array<String>;
   hasPrivilege: boolean;
   noPrivilegeError = Constants.NO_PRIVILEGE_ERROR;
 
-  constructor(private userService: UserService, private conceptService: ConceptsService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
     this.userService.getUserPrivileges().subscribe((response: Array<{ name: String }>) =>
       this.privileges = response
     );
-    this.conceptService.getListOfForms().subscribe((response: {result: any}) => {
-    });
   }
 
   ngDoCheck() {
+    this.setPrivilege();
+  }
+
+  private setPrivilege() {
     if (this.privileges) {
       for (const privilege of this.privileges) {
         if (privilege.name === Constants.PRINT_FORMS_PRIVILEGE) {

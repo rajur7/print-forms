@@ -4,18 +4,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { UserService } from './user.service';
-import {ConceptsService} from './concepts.service';
 import { instance, mock, verify, when } from 'ts-mockito';
 import { Observable } from 'rxjs';
 import { FormListComponent } from './form-list/form-list.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
+import {HttpClientTestingModule} from '../../node_modules/@angular/common/http/testing';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
-  const ConceptServiceMock: ConceptsService = mock(ConceptsService);
   const userServiceMock: UserService = instance(UserServiceMock);
-  const conceptServiceMock: ConceptsService = instance(ConceptServiceMock);
   let fixture: any;
   let app: any;
 
@@ -23,6 +21,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         FormsModule
       ],
       declarations: [
@@ -32,12 +31,11 @@ describe('AppComponent', () => {
         FormListComponent,
         FilterPipe
       ],
-      providers : [{ provide: UserService, useValue: userServiceMock}, {provide: ConceptsService, useValue: conceptServiceMock}]
+      providers : [{ provide: UserService, useValue: userServiceMock}]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
     when(UserServiceMock.getUserPrivileges()).thenReturn(mock(Observable));
-    when(ConceptServiceMock.getListOfForms()).thenReturn(mock(Observable));
 
   }));
 
@@ -45,11 +43,6 @@ describe('AppComponent', () => {
     app.ngOnInit();
 
     verify(UserServiceMock.getUserPrivileges()).called();
-  }));
-
-  it('should call getListOfForms on app initialization', async(() => {
-    app.ngOnInit();
-    verify(ConceptServiceMock.getListOfForms()).called();
   }));
 
   it('should set hasPrivilege to true when there is app:print-forms privilege', async(() => {
