@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FormListComponent } from './form-list.component';
-import { FilterPipe } from '../filter.pipe';
-import { FormsModule } from '@angular/forms';
-import { ConceptsService } from '../concepts.service';
-import { instance, mock, verify, when } from 'ts-mockito';
-import { Observable } from 'rxjs';
+import {FormListComponent} from './form-list.component';
+import {FilterPipe} from '../filter.pipe';
+import {FormsModule} from '@angular/forms';
+import {ConceptsService} from '../concepts.service';
+import {instance, mock, verify, when} from 'ts-mockito';
+import {from, Observable} from 'rxjs';
 
 describe('FormListComponent', () => {
   let component: FormListComponent;
@@ -16,7 +16,7 @@ describe('FormListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [ FormListComponent, FilterPipe ],
+      declarations: [FormListComponent, FilterPipe],
       providers: [{provide: ConceptsService, useValue: conceptServiceMock}]
     })
       .compileComponents();
@@ -62,15 +62,21 @@ describe('FormListComponent', () => {
     verify(ConceptServiceMock.getAllObservationTemplates()).called();
   }));
 
-  it('should have list of form names, when observationTemplates have data on app initialization', async(() => {
-    component.observationTemplates = [{display: 'History and Examination'}, {display: 'Vitals'}, {display: 'Second Vitals'}];
-    component.ngDoCheck();
+  it('should have list of form names, when httpResponse have data on app initialization', async(() => {
+    const testResponse = from([{
+      results: [{
+        setMembers: [{display: 'History and Examination'}, {display: 'Vitals'}, {display: 'Second Vitals'}]
+      }]
+    }]);
+    when(ConceptServiceMock.getAllObservationTemplates()).thenReturn(testResponse);
+
+    component.ngOnInit();
 
     expect(component.formNames).toEqual(['History and Examination', 'Vitals', 'Second Vitals']);
   }));
 
-  it('formNames should be undefined, when observationTemplates doesn\'t have data', async(() => {
-    component.ngDoCheck();
+  it('formNames should be undefined, when httpResponse doesn\'t have data', async(() => {
+    component.ngOnInit();
 
     expect(component.formNames).toBeUndefined();
   }));

@@ -1,16 +1,14 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from './user.service';
 import {Constants} from './constants';
-import {ConceptsService} from './concepts.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit {
   title = 'print-forms';
-  privileges: Array<{ name: String }>;
   hasPrivilege: boolean;
   noPrivilegeError = Constants.NO_PRIVILEGE_ERROR;
 
@@ -18,18 +16,14 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.userService.getUserPrivileges().subscribe((response: Array<{ name: String }>) =>
-      this.privileges = response
-    );
+    this.userService.getUserPrivileges().subscribe((response: Array<{ name: String }>) => {
+      this.setPrivilegeStatus(response);
+    });
   }
 
-  ngDoCheck() {
-    this.setPrivilege();
-  }
-
-  private setPrivilege() {
-    if (this.privileges) {
-      for (const privilege of this.privileges) {
+  private setPrivilegeStatus(privileges:  Array<{ name: String }>) {
+    if (privileges) {
+      for (const privilege of privileges) {
         if (privilege.name === Constants.PRINT_FORMS_PRIVILEGE) {
           this.hasPrivilege = true;
         }

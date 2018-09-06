@@ -5,7 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { UserService } from './user.service';
 import { instance, mock, verify, when } from 'ts-mockito';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { FormListComponent } from './form-list/form-list.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
@@ -33,35 +33,41 @@ describe('AppComponent', () => {
       ],
       providers : [{ provide: UserService, useValue: userServiceMock}]
     }).compileComponents();
+
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
-    when(UserServiceMock.getUserPrivileges()).thenReturn(mock(Observable));
-
   }));
 
   it('should call getUserPrivileges on app initialization', async(() => {
+    when(UserServiceMock.getUserPrivileges()).thenReturn(mock(Observable));
+
     app.ngOnInit();
 
     verify(UserServiceMock.getUserPrivileges()).called();
   }));
 
   it('should set hasPrivilege to true when there is app:print-forms privilege', async(() => {
-    app.privileges = [{name: 'app:print-forms'}, {name: 'app:clinical'}];
+    const testResponse = of([{name: 'app:print-forms'}, {name: 'app:clinical'}]);
+    when(UserServiceMock.getUserPrivileges()).thenReturn(testResponse);
 
-    app.ngDoCheck();
+    app.ngOnInit();
 
     expect(app.hasPrivilege).toBeTruthy();
   }));
 
   it('should set hasPrivilege to false when there is no app:print-forms privilege', async(() => {
-    app.privileges = [{name: 'app:clinical'}];
-    app.ngDoCheck();
+    const testResponse = of([ {name: 'app:clinical'} ]);
+    when(UserServiceMock.getUserPrivileges()).thenReturn(testResponse);
+
+    app.ngOnInit();
 
     expect(app.hasPrivilege).toBeFalsy();
   }));
 
   it('should not set hasPrivilege when privileges list is empty', async(() => {
-    app.ngDoCheck();
+    when(UserServiceMock.getUserPrivileges()).thenReturn(mock(Observable));
+
+    app.ngOnInit();
 
     expect(app.hasPrivilege).toBeUndefined();
   }));
