@@ -35,34 +35,40 @@ describe('FormListComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('div').getAttribute('class')).toContain('searchbox');
-    expect(compiled.querySelector('input').getAttribute('class')).toContain('search_input');
+    expect(compiled.querySelector('div > div').getAttribute('class')).toEqual('search');
+    expect(compiled.querySelector('div > div > div').getAttribute('class')).toContain('icon fa fa-search');
+
+    expect(compiled.querySelector('div > div > input').getAttribute('class')).toContain('search_input');
+    expect(compiled.querySelector('div > ul')).not.toBeNull();
   });
 
-  it('should not have li & ul elements when formNames list is empty', () => {
+  it('should not have li element when formNames list is empty', () => {
     component.formNames = [];
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.querySelector('ul')).toBeNull();
     expect(compiled.querySelector('li')).toBeNull();
   });
 
-  it('should have li & ul elements when formNames list is not empty', () => {
-    component.formNames = ['form 1'];
+  it('should have li elements and content when formNames list has two forms', () => {
+    component.formNames = ['form 1', 'form 2'];
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.querySelector('ul')).not.toBeNull();
-    expect(compiled.querySelector('li')).not.toBeNull();
+    expect(compiled.querySelectorAll('div > ul > li').length).toEqual(2);
+
+    expect(compiled.querySelector('div > ul > li').textContent).toEqual('form 1');
+    expect(compiled.querySelector('div > ul > li ~ li').textContent).toEqual('form 2');
+
   });
 
-  it('should call getAllObservationTemplates on app initialization', async(() => {
+  it('should call getAllObservationTemplates on app initialization', () => {
     component.ngOnInit();
 
     verify(ConceptServiceMock.getAllObservationTemplates()).called();
-  }));
+  });
 
-  it('should have list of form names, when httpResponse have data on app initialization', async(() => {
+  it('should have list of form names, when httpResponse have data on app initialization', () => {
     const testResponse = from([{
       results: [{
         setMembers: [{display: 'History and Examination'}, {display: 'Vitals'}, {display: 'Second Vitals'}]
@@ -73,12 +79,12 @@ describe('FormListComponent', () => {
     component.ngOnInit();
 
     expect(component.formNames).toEqual(['History and Examination', 'Vitals', 'Second Vitals']);
-  }));
+  });
 
-  it('formNames should be undefined, when httpResponse doesn\'t have data', async(() => {
+  it('formNames should be undefined, when httpResponse doesn\'t have data', () => {
     component.ngOnInit();
 
     expect(component.formNames).toBeUndefined();
-  }));
+  });
 
 });

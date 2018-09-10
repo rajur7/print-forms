@@ -4,9 +4,9 @@
       <div class="icon fa fa-search"></div>
     <input [(ngModel)]="searchKeyWord"  class = "search_input" placeholder="Search..." />
     </div>
-    <ul *ngFor="let formName of formNames | filter: searchKeyWord">
-      <li>
-        <a class="conceptName">{{ formName }}</a>
+    <ul>
+      <li *ngFor="let formName of formNames | filter: searchKeyWord">
+        <a class="conceptName" >{{ formName }}</a>
       </li>
     </ul>
   </div>
