@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from './user.service';
-import {Constants} from './constants';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service';
+import { Constants } from './constants';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private setPrivilegeStatus(privileges:  Array<{ name: String }>) {
+  private setPrivilegeStatus(privileges: Array<{ name: String }>) {
     if (privileges) {
       for (const privilege of privileges) {
         if (privilege.name === Constants.PRINT_FORMS_PRIVILEGE) {

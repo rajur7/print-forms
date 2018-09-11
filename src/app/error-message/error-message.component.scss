@@ -1,5 +1,5 @@
 .error-message-container {
-  background-image: linear-gradient( #d87777, #d95757);
+  background-image: linear-gradient(#d87777, #d95757);
   border: 1px solid #b72224;
   width: 35%;
   margin: 5px auto;
@@ -16,19 +16,21 @@
   z-index: 99999999;
   display: table;
 }
+
 div {
   display: block;
 }
-.button-wrapper{
+
+.button-wrapper {
   padding: 7px;
   font-family: OpenSansSemiBold, Arial, serif;
   font-weight: bold;
   font-size: 20px;
 }
-button
-{
+
+button {
   border-radius: 3px;
-  background: linear-gradient( #FFF, #DDD);
+  background: linear-gradient(#FFF, #DDD);
   border: #DDD 1px solid;
   padding: 6px 20px 7px;
   display: inline-block;
@@ -40,10 +42,12 @@ button
   max-width: 300px;
   text-decoration: none;
 }
-.fl{
+
+.fl {
   float: left;
 }
-.fr{
+
+.fr {
   float: right;
 }
 

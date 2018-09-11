@@ -10,10 +10,11 @@ export class FormListComponent implements OnInit {
   formNames: Array<String>;
   searchKeyWord: String;
 
-  constructor( private conceptService: ConceptsService) { }
+  constructor(private conceptService: ConceptsService) {
+  }
 
   ngOnInit() {
-    this.conceptService.getAllObservationTemplates().subscribe((response: {results: any}) => {
+    this.conceptService.getAllObservationTemplates().subscribe((response: { results: any }) => {
       if (response.results[0]) {
         this.formNames = response.results[0].setMembers.map((form) => form.display);
       }

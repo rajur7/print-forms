@@ -1,5 +1,5 @@
-import {async, TestBed} from '@angular/core/testing';
-import {FilterPipe} from './filter.pipe';
+import { async } from '@angular/core/testing';
+import { FilterPipe } from './filter.pipe';
 
 describe('Filter pipe', () => {
   let filterPipe: any;
@@ -11,7 +11,7 @@ describe('Filter pipe', () => {
     expect(filterPipe.transform(undefined, 'searchKeyword')).toEqual([]);
   });
 
-  it( 'should return empty list when items list is null', () => {
+  it('should return empty list when items list is null', () => {
     expect(filterPipe.transform(null, 'searchKeyword')).toEqual([]);
   });
 

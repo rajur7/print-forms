@@ -5,11 +5,11 @@ import { HeaderComponent } from './header/header.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { UserService } from './user.service';
 import { instance, mock, verify, when } from 'ts-mockito';
-import {Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FormListComponent } from './form-list/form-list.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
-import {HttpClientTestingModule} from '../../node_modules/@angular/common/http/testing';
+import { HttpClientTestingModule } from '../../node_modules/@angular/common/http/testing';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
@@ -31,7 +31,7 @@ describe('AppComponent', () => {
         FormListComponent,
         FilterPipe
       ],
-      providers : [{ provide: UserService, useValue: userServiceMock}]
+      providers: [{provide: UserService, useValue: userServiceMock}]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -56,7 +56,7 @@ describe('AppComponent', () => {
   }));
 
   it('should set hasPrivilege to false when there is no app:print-forms privilege', async(() => {
-    const testResponse = of([ {name: 'app:clinical'} ]);
+    const testResponse = of([{name: 'app:clinical'}]);
     when(UserServiceMock.getUserPrivileges()).thenReturn(testResponse);
 
     app.ngOnInit();

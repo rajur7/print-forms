@@ -29,4 +29,5 @@ import { FormComponent } from './form/form.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

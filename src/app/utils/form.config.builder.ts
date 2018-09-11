@@ -7,7 +7,7 @@ export class FormConfigBuilder {
     formJson.datatype = form.datatype.display;
 
     if (form.setMembers.length > 0) {
-      formJson.setMembers =  FormConfigBuilder.buildSetMembers(form.setMembers, appConfig);
+      formJson.setMembers = FormConfigBuilder.buildSetMembers(form.setMembers, appConfig);
     }
 
     formJson.config = appConfig[form.name.name];

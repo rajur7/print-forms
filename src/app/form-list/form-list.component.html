@@ -2,7 +2,7 @@
   <div class="searchbox">
     <div class="search">
       <div class="icon fa fa-search"></div>
-    <input [(ngModel)]="searchKeyWord"  class = "search_input" placeholder="Search..." />
+      <input [(ngModel)]="searchKeyWord" class="search_input" placeholder="Search..."/>
     </div>
     <ul>
       <li *ngFor="let formName of formNames | filter: searchKeyWord">

@@ -1,8 +1,8 @@
-import {getTestBed, inject, TestBed} from '@angular/core/testing';
+import { getTestBed, inject, TestBed } from '@angular/core/testing';
 
-import {UserService} from './user.service';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {Constants} from './constants';
+import { UserService } from './user.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Constants } from './constants';
 
 describe('UserService', () => {
   let injector: TestBed;

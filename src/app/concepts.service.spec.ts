@@ -53,7 +53,7 @@ describe('ConceptsService', () => {
     service.getFormConfiguration('formName');
 
     const configRequest = httpMock.expectOne(Constants.CONFIG_FILE_PATH);
-    configRequest.flush({config: { conceptSetUI: 'formConfig'}});
+    configRequest.flush({config: {conceptSetUI: 'formConfig'}});
     const formDetailsRequest = httpMock.expectOne(Constants.OPENMRS_ROOT_URL + Constants.FORM_DETAILS_URL +
       'formName' + Constants.BAHMNI_RESOURCE_URL);
     formDetailsRequest.flush({results: ['formDetails']});

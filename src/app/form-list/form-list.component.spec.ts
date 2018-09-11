@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {FormListComponent} from './form-list.component';
-import {FilterPipe} from '../filter.pipe';
-import {FormsModule} from '@angular/forms';
-import {ConceptsService} from '../concepts.service';
-import {instance, mock, verify, when} from 'ts-mockito';
-import {from, Observable} from 'rxjs';
-import {RouterTestingModule} from '@angular/router/testing';
+import { FormListComponent } from './form-list.component';
+import { FilterPipe } from '../filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { ConceptsService } from '../concepts.service';
+import { instance, mock, verify, when } from 'ts-mockito';
+import { from, Observable } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('FormListComponent', () => {
   let component: FormListComponent;

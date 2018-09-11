@@ -1,4 +1,4 @@
-import {FormConfigBuilder} from './form.config.builder';
+import { FormConfigBuilder } from './form.config.builder';
 
 describe('Form Config Builder', () => {
 
@@ -46,13 +46,13 @@ describe('Form Config Builder', () => {
     expect(actualConfig).toEqual(expectedConfig);
   });
 
- it('should build configuration, given form with no set members', function () {
+  it('should build configuration, given form with no set members', function () {
     const formDetails = {
       name: {display: 'Vitals', name: 'Vitals'},
       set: true,
       datatype: {display: 'N/A'},
       setMembers: []
-      };
+    };
 
     const appConfig = {
       'Vitals': {
