@@ -6,7 +6,7 @@
     </div>
     <ul>
       <li *ngFor="let formName of formNames | filter: searchKeyWord">
-        <a class="conceptName" >{{ formName }}</a>
+        <a class="conceptName" routerLink="{{formName}}">{{ formName }}</a>
       </li>
     </ul>
   </div>

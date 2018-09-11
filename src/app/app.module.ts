@@ -9,6 +9,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 import { FormListComponent } from './form-list/form-list.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FilterPipe } from './filter.pipe';
     HeaderComponent,
     ErrorMessageComponent,
     FormListComponent,
-    FilterPipe
+    FilterPipe,
+    FormComponent
   ],
   imports: [
     BrowserModule,
