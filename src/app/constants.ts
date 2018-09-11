@@ -4,6 +4,9 @@ export class Constants {
   public static NO_PRIVILEGE_ERROR = 'User is logged in but doesn\'t have the relevant privilege';
   public static WHOAMI_URL = 'bahmnicore/whoami';
   public static ALL_OBSERVATION_TEMPLATES_URL = 'concept?s=byFullySpecifiedName&name=All+Observation+Templates&v' +
-    '=custom:(setMembers:(display))';
+      '=custom:(setMembers:(display))';
+  public static FORM_DETAILS_URL = 'concept?s=byFullySpecifiedName&locale=en&name=';
+  public static BAHMNI_RESOURCE_URL = '&v=bahmni';
+  public static CONFIG_FILE_PATH = '../bahmni_config/openmrs/apps/clinical/app.json';
 }
 
