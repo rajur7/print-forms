@@ -1,4 +1,25 @@
 .form {
-  margin: 80px 80px 80px 380px;
+  margin: 50px 25px 75px 300px;
+  border: 1px solid #BBB;
   border-radius: 8px;
+  position: fixed;
+  width: 74%;
+  height: 85%;
+  top: 30px;
+  bottom: 50px;
+  background: #FFF;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
+.formName {
+  margin: 0;
+  background: #699;
+  color: white;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: Arial, FontAwesome, serif;
+}
+
