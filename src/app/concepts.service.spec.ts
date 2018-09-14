@@ -31,33 +31,17 @@ describe('ConceptsService', () => {
 
 
   it('should make http get call to get app config', function () {
-    service.getFormConfiguration('formName');
+    service.getAppConfig().subscribe();
 
     const testRequest = httpMock.expectOne(Constants.CONFIG_FILE_PATH);
     expect(testRequest.request.method).toBe('GET');
   });
 
   it('should make http get call to get form details for given form name', function () {
-    service.getFormConfiguration('formName');
+    service.getFormDetails('name').subscribe();
 
-    let testRequest = httpMock.expectOne(Constants.CONFIG_FILE_PATH);
-    testRequest.flush({config: 'value'});
+    const testRequest = httpMock.expectOne(Constants.OPENMRS_ROOT_URL + Constants.FORM_DETAILS_URL +
+      'name' + Constants.BAHMNI_RESOURCE_URL);
     expect(testRequest.request.method).toBe('GET');
-    testRequest = httpMock.expectOne(Constants.OPENMRS_ROOT_URL + Constants.FORM_DETAILS_URL +
-      'formName' + Constants.BAHMNI_RESOURCE_URL);
-    expect(testRequest.request.method).toBe('GET');
-  });
-
-  it('should call form config builder with given app config and form details', function () {
-    const formConfigBuilder = spyOn(FormConfigBuilder, 'build');
-    service.getFormConfiguration('formName');
-
-    const configRequest = httpMock.expectOne(Constants.CONFIG_FILE_PATH);
-    configRequest.flush({config: {conceptSetUI: 'formConfig'}});
-    const formDetailsRequest = httpMock.expectOne(Constants.OPENMRS_ROOT_URL + Constants.FORM_DETAILS_URL +
-      'formName' + Constants.BAHMNI_RESOURCE_URL);
-    formDetailsRequest.flush({results: ['formDetails']});
-
-    expect(formConfigBuilder).toHaveBeenCalledWith('formDetails', 'formConfig');
   });
 });
