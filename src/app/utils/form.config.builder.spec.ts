@@ -29,14 +29,14 @@ describe('Form Config Builder', () => {
       }
     };
     const expectedConfig = {
-      formName: 'Vitals',
+      name: 'Vitals',
       set: true,
       datatype: 'N/A',
       setMembers: [{
-        formName: 'Heart Rate',
+        name: 'Heart Rate',
         set: true,
         datatype: 'N/A',
-        setMembers: [{formName: 'Weight', set: false, datatype: 'date', config: undefined}],
+        setMembers: [{name: 'Weight', set: false, datatype: 'date', config: undefined}],
         config: {allowAddMore: true}
       }], config: {showPanelView: false}
     };
@@ -61,7 +61,7 @@ describe('Form Config Builder', () => {
     };
 
     const expectedConfig = {
-      formName: 'Vitals',
+      name: 'Vitals',
       set: true,
       datatype: 'N/A',
       config: {showPanelView: false}

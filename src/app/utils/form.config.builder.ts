@@ -2,7 +2,7 @@ export class FormConfigBuilder {
 
   static build(form: any, appConfig: any) {
     const formJson = Object.create({});
-    formJson.formName = form.name.display;
+    formJson.name = form.name.display;
     formJson.set = form.set;
     formJson.datatype = form.datatype.display;
 

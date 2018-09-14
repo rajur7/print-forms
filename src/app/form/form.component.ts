@@ -8,18 +8,15 @@ import { FormConfigBuilder } from '../utils/form.config.builder';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
   name: String;
   form: any;
 
   constructor(private route: ActivatedRoute, private conceptService: ConceptsService) {
     this.route.params.subscribe(params => {
       this.name = params.formName;
+      this.initializeForm();
     });
-  }
-
-  ngOnInit() {
-    this.initializeForm();
   }
 
   private initializeForm() {
