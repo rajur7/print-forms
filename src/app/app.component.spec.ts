@@ -10,6 +10,8 @@ import { FormListComponent } from './form-list/form-list.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '../../node_modules/@angular/common/http/testing';
+import { ConceptSetComponent } from './concept-set/concept-set.component';
+import { ConceptComponent } from './concept/concept.component';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
@@ -29,6 +31,8 @@ describe('AppComponent', () => {
         HeaderComponent,
         ErrorMessageComponent,
         FormListComponent,
+        ConceptSetComponent,
+        ConceptComponent,
         FilterPipe
       ],
       providers: [{provide: UserService, useValue: userServiceMock}]

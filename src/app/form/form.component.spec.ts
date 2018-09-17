@@ -5,6 +5,8 @@ import { from, of } from 'rxjs';
 import { FormConfigBuilder } from '../utils/form.config.builder';
 import { instance, mock, verify, when } from 'ts-mockito';
 import { ConceptsService } from '../concepts.service';
+import { ConceptSetComponent } from '../concept-set/concept-set.component';
+import { ConceptComponent } from '../concept/concept.component';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -15,7 +17,9 @@ describe('FormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormComponent],
+      declarations: [FormComponent,
+        ConceptSetComponent,
+        ConceptComponent],
       providers: [{provide: ActivatedRoute, useValue: {params: from([{formName: 'test form'}])}},
         {provide: ConceptsService, useValue: conceptServiceMock}]
     })
@@ -55,5 +59,16 @@ describe('FormComponent', () => {
     verify(ConceptServiceMock.getAppConfig()).called();
     verify(ConceptServiceMock.getFormDetails('test form')).called();
     expect(formConfigBuilder).toHaveBeenCalledWith('formDetails', 'appConfig' );
+  });
+
+  it('should display concept and concept-set component when set members list is not empty', function () {
+    component.form = {name: 'test form', setMembers : [{name: 'member1', set: true}, {name: 'member2', set: false}]};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-concept-set').length).toBe(1);
+    expect(compiled.querySelectorAll('app-concept').length).toBe(1);
+    expect(compiled.querySelector('app-concept-set')).not.toBeNull();
+    expect(compiled.querySelector('app-concept')).not.toBeNull();
   });
 });

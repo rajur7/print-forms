@@ -10,6 +10,8 @@ import { FormListComponent } from './form-list/form-list.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { FormComponent } from './form/form.component';
+import { ConceptComponent } from './concept/concept.component';
+import { ConceptSetComponent } from './concept-set/concept-set.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FormComponent } from './form/form.component';
     HeaderComponent,
     ErrorMessageComponent,
     FormListComponent,
+    ConceptComponent,
+    ConceptSetComponent,
     FilterPipe,
     FormComponent
   ],

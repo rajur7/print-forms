@@ -1,3 +1,7 @@
 <div *ngIf="form" class="form">
   <div class="formName">{{name}}</div>
+  <div *ngFor="let member of form.setMembers">
+    <app-concept *ngIf="!member.set" [member]="member"></app-concept>
+    <app-concept-set *ngIf="member.set" [member]="member"></app-concept-set>
+  </div>
 </div>

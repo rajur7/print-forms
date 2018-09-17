@@ -11,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { FormListComponent } from './form-list/form-list.component';
+import { ConceptComponent } from './concept/concept.component';
+import { ConceptSetComponent } from './concept-set/concept-set.component';
 
 describe('AppRoutingModule', () => {
   let location: Location;
@@ -25,7 +27,8 @@ describe('AppRoutingModule', () => {
         HttpClientTestingModule
       ],
       declarations: [
-        AppComponent, FormComponent, HeaderComponent, FormListComponent, ErrorMessageComponent, FilterPipe
+        AppComponent, FormComponent, HeaderComponent, FormListComponent,
+        ErrorMessageComponent, FilterPipe, ConceptComponent, ConceptSetComponent,
       ]
     });
 
