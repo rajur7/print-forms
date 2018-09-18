@@ -16,9 +16,12 @@ describe('Form Config Builder', () => {
           uuid: 'fhjfhgff67687',
           set: false,
           datatype: {display: 'date'},
-          setMembers: []
-        }]
-      }]
+          setMembers: [],
+          answers: []
+        }],
+        answers: []
+      }],
+      answers: []
     };
     const appConfig = {
       'Vitals': {
@@ -36,9 +39,11 @@ describe('Form Config Builder', () => {
         name: 'Heart Rate',
         set: true,
         datatype: 'N/A',
-        setMembers: [{name: 'Weight', set: false, datatype: 'date', config: undefined}],
+        setMembers: [{name: 'Weight', set: false, datatype: 'date', config: undefined, answers: []}],
+        answers: [],
         config: {allowAddMore: true}
-      }], config: {showPanelView: false}
+      }], config: {showPanelView: false},
+      answers: []
     };
 
     const actualConfig = FormConfigBuilder.build(formDetails, appConfig);
@@ -51,7 +56,8 @@ describe('Form Config Builder', () => {
       name: {display: 'Vitals', name: 'Vitals'},
       set: true,
       datatype: {display: 'N/A'},
-      setMembers: []
+      setMembers: [],
+      answers: []
     };
 
     const appConfig = {
@@ -64,7 +70,64 @@ describe('Form Config Builder', () => {
       name: 'Vitals',
       set: true,
       datatype: 'N/A',
-      config: {showPanelView: false}
+      config: {showPanelView: false},
+      answers: []
+    };
+
+    const actualConfig = FormConfigBuilder.build(formDetails, appConfig);
+
+    expect(actualConfig).toEqual(expectedConfig);
+  });
+
+  it('should build configuration, given form with no answers', function () {
+    const formDetails = {
+      name: {display: 'Vitals', name: 'Vitals'},
+      set: true,
+      datatype: {display: 'N/A'},
+      setMembers: [],
+      answers: []
+    };
+
+    const appConfig = {
+      'Vitals': {
+        'showPanelView': false
+      }
+    };
+
+    const expectedConfig = {
+      name: 'Vitals',
+      set: true,
+      datatype: 'N/A',
+      config: {showPanelView: false},
+      answers: []
+    };
+
+    const actualConfig = FormConfigBuilder.build(formDetails, appConfig);
+
+    expect(actualConfig).toEqual(expectedConfig);
+  });
+
+  it('should build configuration, given form with answers', function () {
+    const formDetails = {
+      name: {display: 'Vitals', name: 'Vitals'},
+      set: true,
+      datatype: {display: 'Coded'},
+      setMembers: [],
+      answers: [{name : {display: 'Abdominal pain'}}, {name : {display: 'Abdominal Lump'}}, {name : {display: 'Anorexia'}}]
+    };
+
+    const appConfig = {
+      'Vitals': {
+        'showPanelView': false
+      }
+    };
+
+    const expectedConfig = {
+      name: 'Vitals',
+      set: true,
+      datatype: 'Coded',
+      config: {showPanelView: false},
+      answers: ['Abdominal pain', 'Abdominal Lump', 'Anorexia']
     };
 
     const actualConfig = FormConfigBuilder.build(formDetails, appConfig);

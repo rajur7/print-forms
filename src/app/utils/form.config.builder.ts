@@ -5,6 +5,10 @@ export class FormConfigBuilder {
     formJson.name = form.name.display;
     formJson.set = form.set;
     formJson.datatype = form.datatype.display;
+    formJson.answers = [];
+    if (form.answers.length > 0) {
+      form.answers.map( answer => formJson.answers.push(answer.name.display));
+    }
 
     if (form.setMembers.length > 0) {
       formJson.setMembers = FormConfigBuilder.buildSetMembers(form.setMembers, appConfig);
