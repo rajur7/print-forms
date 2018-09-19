@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConceptsService } from '../concepts.service';
 import { FormConfigBuilder } from '../utils/form.config.builder';
+import { ConceptUtils } from '../utils/concept.utils';
 
 @Component({
   selector: 'app-form',
@@ -25,5 +26,9 @@ export class FormComponent {
         this.form = FormConfigBuilder.build(formDetails.results[0], config.config.conceptSetUI);
       });
     });
+  }
+
+  isTabular(member) {
+    return ConceptUtils.isTabular(member);
   }
 }

@@ -1,0 +1,32 @@
+.tabular-concept {
+  text-align: left;
+  font-family: OpenSansBold;
+  font-size: 12px;
+  padding: 0 0 5px;
+  color: #666;
+}
+
+.container-element {
+  border: 1px solid #ddd;
+}
+
+.container {
+  display: flex;
+  margin: 10px 10px 10px 10px;
+}
+
+th{
+  font-size: 11px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: #ddd;
+  padding: 7px;
+  font-weight: 700;
+  font-family: OpenSans,Arial,sans-serif;
+  width: auto;
+  word-break: normal;
+  text-align: left;
+  border: 1px solid #ddd;
+  vertical-align: inherit;
+}
+

@@ -8,6 +8,8 @@ import { ConceptsService } from '../concepts.service';
 import { ConceptSetComponent } from '../concept-set/concept-set.component';
 import { ConceptComponent } from '../concept/concept.component';
 import { TextBoxComponent } from '../elements/text-box/text-box.component';
+import { TabularViewComponent } from '../tabular-view/tabular-view.component';
+import { ConceptUtils } from '../utils/concept.utils';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -15,10 +17,11 @@ describe('FormComponent', () => {
   const ConceptServiceMock: ConceptsService = mock(ConceptsService);
   const conceptServiceMock: ConceptsService = instance(ConceptServiceMock);
   let formConfigBuilder: FormConfigBuilder;
+  let conceptUtils: ConceptUtils;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormComponent, ConceptSetComponent, ConceptComponent, TextBoxComponent],
+      declarations: [FormComponent, ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent],
       providers: [{provide: ActivatedRoute, useValue: {params: from([{formName: 'test form'}])}},
         {provide: ConceptsService, useValue: conceptServiceMock}]
     })
@@ -33,6 +36,7 @@ describe('FormComponent', () => {
     when(ConceptServiceMock.getAppConfig()).thenReturn(appConfig);
     when(ConceptServiceMock.getFormDetails('test form')).thenReturn(formDetails);
     formConfigBuilder = spyOn(FormConfigBuilder, 'build');
+    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
   });
@@ -69,5 +73,12 @@ describe('FormComponent', () => {
     expect(compiled.querySelectorAll('app-concept').length).toBe(1);
     expect(compiled.querySelector('app-concept-set')).not.toBeNull();
     expect(compiled.querySelector('app-concept')).not.toBeNull();
+  });
+
+  it('should call isTabular method of conceptUtils', () => {
+    const member = {};
+    component.isTabular(member);
+
+    expect(conceptUtils).toHaveBeenCalledWith(member);
   });
 });

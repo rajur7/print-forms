@@ -13,6 +13,7 @@ import { HttpClientTestingModule } from '../../node_modules/@angular/common/http
 import { ConceptSetComponent } from './concept-set/concept-set.component';
 import { ConceptComponent } from './concept/concept.component';
 import { TextBoxComponent } from './elements/text-box/text-box.component';
+import { TabularViewComponent } from './tabular-view/tabular-view.component';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
@@ -35,6 +36,7 @@ describe('AppComponent', () => {
         ConceptSetComponent,
         ConceptComponent,
         TextBoxComponent,
+        TabularViewComponent,
         FilterPipe
       ],
       providers: [{provide: UserService, useValue: userServiceMock}]

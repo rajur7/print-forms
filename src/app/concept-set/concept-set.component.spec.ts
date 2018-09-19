@@ -3,14 +3,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConceptSetComponent } from './concept-set.component';
 import { ConceptComponent } from '../concept/concept.component';
 import { TextBoxComponent } from '../elements/text-box/text-box.component';
+import { TabularViewComponent } from '../tabular-view/tabular-view.component';
+import { ConceptUtils } from '../utils/concept.utils';
 
 describe('ConceptSetComponent', () => {
   let component: ConceptSetComponent;
   let fixture: ComponentFixture<ConceptSetComponent>;
+  let conceptUtils: ConceptUtils;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConceptSetComponent, ConceptComponent, TextBoxComponent ]
+      declarations: [ ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent ]
     })
     .compileComponents();
   }));
@@ -19,6 +22,7 @@ describe('ConceptSetComponent', () => {
     fixture = TestBed.createComponent(ConceptSetComponent);
     component = fixture.componentInstance;
     component.member = {name: 'test member'};
+    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture.detectChanges();
   });
 
@@ -73,5 +77,12 @@ describe('ConceptSetComponent', () => {
 
     expect(compiled.querySelector('app-concept-set')).toBeNull();
     expect(compiled.querySelector('app-concept')).toBeNull();
+  });
+
+  it('should call isTabular method of conceptUtils', () => {
+    const member = {};
+    component.isTabular(member);
+
+    expect(conceptUtils).toHaveBeenCalledWith(member);
   });
 });

@@ -2,6 +2,7 @@
   <div class="formName">{{name}}</div>
   <div *ngFor="let member of form.setMembers">
     <app-concept *ngIf="!member.set" [member]="member"></app-concept>
-    <app-concept-set *ngIf="member.set" [member]="member"></app-concept-set>
+    <app-concept-set *ngIf="member.set && !isTabular(member)" [member]="member"></app-concept-set>
+    <app-tabular-view *ngIf="member.set && isTabular(member)" [member]="member"></app-tabular-view>
   </div>
 </div>
