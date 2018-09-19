@@ -65,7 +65,7 @@ describe('FormComponent', () => {
   });
 
   it('should display concept and concept-set component when set members list is not empty', function () {
-    component.form = {name: 'test form', setMembers : [{name: 'member1', set: true}, {name: 'member2', set: false}]};
+    component.form = {name: 'test form', setMembers : [{name: 'member1', set: true, setMembers: []}, {name: 'member2', set: false}]};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 

@@ -16,6 +16,7 @@ describe('TextBoxComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextBoxComponent);
     component = fixture.componentInstance;
+    component.member = {};
     fixture.detectChanges();
   });
 
@@ -28,5 +29,19 @@ describe('TextBoxComponent', () => {
 
     expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
     expect(compiled.querySelector('input')).not.toBeNull();
+  });
+
+  it('should have button element when member is abnormal', () => {
+    component.member = {isAbnormal: true};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('button')).not.toBeNull();
+  });
+
+  it('should not have button when member is not abnormal', function () {
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('button')).toBeNull();
   });
 });

@@ -1,4 +1,4 @@
-<div class="concept-set-section">
+<div class="concept-set-section" *ngIf="!abnormal">
   <div class="concept-set">
     {{member.name}}
   </div>
@@ -7,4 +7,7 @@
   <app-tabular-view *ngIf="member.set && isTabular(member)" [member]="member"></app-tabular-view>
   <app-concept-set *ngIf="member.set && !isTabular(member)" [member]="member"></app-concept-set>
 </div>
+</div>
+<div *ngIf="abnormal">
+  <app-concept [member]="getMergedConcept()"></app-concept>
 </div>

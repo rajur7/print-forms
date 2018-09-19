@@ -21,6 +21,7 @@ describe('ConceptSetComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConceptSetComponent);
     component = fixture.componentInstance;
+    component.member = {name: 'test member', set: true, setMembers: []};
     component.member = {name: 'test member'};
     conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture.detectChanges();
@@ -39,7 +40,7 @@ describe('ConceptSetComponent', () => {
   });
 
   it('should display concept and concept-set component when set members list is not empty', function () {
-    component.member = {name: 'test member', setMembers : [{name: 'member1', set: true}, {name: 'member2', set: false}]};
+    component.member = {name: 'test member', setMembers : [{name: 'member1', set: true, setMembers: []}, {name: 'member2', set: false}]};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
@@ -61,7 +62,7 @@ describe('ConceptSetComponent', () => {
 
   it('should display only concept-set component when all set members are concept sets', function () {
     component.member = {name: 'test member', setMembers : [{name: 'member1', set: true, setMembers:
-          [{name: 'member11', set: true}]}, {name: 'member2', set: true}]};
+          [{name: 'member11', set: true, setMembers: []}]}, {name: 'member2', set: true, setMembers: []}]};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
@@ -77,6 +78,53 @@ describe('ConceptSetComponent', () => {
 
     expect(compiled.querySelector('app-concept-set')).toBeNull();
     expect(compiled.querySelector('app-concept')).toBeNull();
+  });
+
+  it('should set abnormal to true when member contains abnormal concepts', function () {
+    component.member = {name: 'test member', set: true, setMembers: [{class: 'Abnormal'}]};
+    fixture.detectChanges();
+
+    component.ngOnInit();
+
+    expect(component.abnormal).toBeTruthy();
+  });
+
+  it('should set abnormal remains false when member contains no abnormal concepts', function () {
+    component.member = {name: 'test member', set: true, setMembers: []};
+    fixture.detectChanges();
+
+    component.ngOnInit();
+
+    expect(component.abnormal).toBeFalsy();
+  });
+
+  it('should return merged concept with isAbnormal set to true', function () {
+    component.member = {name: 'test member', set: true, setMembers: [{class: 'Misc'}]};
+    fixture.detectChanges();
+
+    const mergedConcept = component.getMergedConcept();
+
+    expect(mergedConcept).not.toBeNull();
+    expect(mergedConcept.isAbnormal).toBeTruthy();
+  });
+
+
+  it('should return merged concept with isAbnormal undefined', function () {
+    component.member = {name: 'test member', set: true, setMembers: [{class: 'Abnormal'}]};
+    fixture.detectChanges();
+
+    const mergedConcept = component.getMergedConcept();
+
+    expect(mergedConcept).toBeUndefined();
+  });
+
+  it('should have only one concept on abnormal concept set ', function () {
+    component.abnormal = true;
+    component.member = {setMembers: [{class: 'Misc'}]};
+    const compiled = fixture.debugElement.nativeElement;
+    fixture.detectChanges();
+
+    expect(compiled.querySelectorAll('app-concept').length).toEqual(1);
   });
 
   it('should call isTabular method of conceptUtils', () => {
