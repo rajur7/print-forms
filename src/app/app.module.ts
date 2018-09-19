@@ -12,6 +12,7 @@ import { FilterPipe } from './filter.pipe';
 import { FormComponent } from './form/form.component';
 import { ConceptComponent } from './concept/concept.component';
 import { ConceptSetComponent } from './concept-set/concept-set.component';
+import { TextBoxComponent } from './elements/text-box/text-box.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConceptSetComponent } from './concept-set/concept-set.component';
     ConceptComponent,
     ConceptSetComponent,
     FilterPipe,
-    FormComponent
+    FormComponent,
+    TextBoxComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,7 @@
-<div class="label">
-  {{member.name}}
+<div class="concept">
+  <div class="question">{{member.name}}</div>
+  <div [ngSwitch]="member.datatype" class="answer">
+  <app-text-box *ngSwitchCase="'Text'" [member]="member"></app-text-box>
+  <app-text-box *ngSwitchCase="'Numeric'" [member]="member"></app-text-box>
+</div>
 </div>
