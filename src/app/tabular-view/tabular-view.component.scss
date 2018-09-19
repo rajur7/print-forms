@@ -8,6 +8,7 @@
 
 .container-element {
   border: 1px solid #ddd;
+  flex: 1;
 }
 
 .container {
@@ -28,5 +29,7 @@ th{
   text-align: left;
   border: 1px solid #ddd;
   vertical-align: inherit;
+  display: flex;
+  flex: 1;
 }
 
