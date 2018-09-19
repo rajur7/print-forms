@@ -1,4 +1,10 @@
  <label class="text-answer">
     <input>
   </label>
- <button *ngIf="member.isAbnormal">Abnormal</button>
+ <div class="abnormal" *ngIf="member.isAbnormal">
+   <p class="hint" *ngIf="member.range[0] && member.range[1]">({{member.range[0]}}-{{member.range[1]}})</p>
+   <p class="hint" *ngIf="member.range[0] && !member.range[1]">(> {{member.range[0]}})</p>
+   <p class="hint" *ngIf="!member.range[0] && member.range[1]">(< {{member.range[1]}})</p>
+   <button>Abnormal</button>
+ </div>
+

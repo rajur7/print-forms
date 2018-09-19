@@ -32,16 +32,41 @@ describe('TextBoxComponent', () => {
   });
 
   it('should have button element when member is abnormal', () => {
-    component.member = {isAbnormal: true};
+    component.member = {isAbnormal: true, range: []};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('button')).not.toBeNull();
+    expect(compiled.querySelector('div').getAttribute('class')).toEqual('abnormal');
   });
 
   it('should not have button when member is not abnormal', function () {
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('button')).toBeNull();
+  });
+
+  it('should have both high and low range values', function () {
+    component.member = {isAbnormal: true, range: [ 1, 2 ]};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('p').textContent).toEqual('(1-2)');
+  });
+
+  it('should have only low range value', function () {
+    component.member = {isAbnormal: true, range: [ 2, undefined ]};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('p').textContent).toEqual('(> 2)');
+  });
+
+  it('should have only high range value', function () {
+    component.member = {isAbnormal: true, range: [ undefined, 2 ]};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('p').textContent).toEqual('(< 2)');
   });
 });
