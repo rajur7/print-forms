@@ -18,7 +18,9 @@ describe('Form Config Builder', () => {
           datatype: {display: 'date'},
           setMembers: [],
           answers: [],
-          conceptClass: { name: 'Misc'}
+          conceptClass: { name: 'Misc'},
+          hiNormal: 72,
+          lowNormal: 72
         }],
         answers: [],
         conceptClass: { name: 'Misc'}
@@ -42,13 +44,16 @@ describe('Form Config Builder', () => {
         name: 'Heart Rate',
         set: true,
         datatype: 'N/A',
-        setMembers: [{name: 'Weight', set: false, datatype: 'date', config: undefined, answers: [], class: 'Misc'}],
+        setMembers: [{name: 'Weight', set: false, datatype: 'date', config: undefined,
+          answers: [], class: 'Misc',  range: [72, 72]}],
         answers: [],
         class: 'Misc',
-        config: {allowAddMore: true}
+        config: {allowAddMore: true},
+        range: [undefined, undefined]
       }], config: {showPanelView: false},
       answers: [],
-      class: 'Misc'
+      class: 'Misc',
+      range: [undefined, undefined]
     };
 
     const actualConfig = FormConfigBuilder.build(formDetails, appConfig);
@@ -78,7 +83,8 @@ describe('Form Config Builder', () => {
       datatype: 'N/A',
       config: {showPanelView: false},
       answers: [],
-      class: 'Misc'
+      class: 'Misc',
+      range: [undefined, undefined]
     };
 
     const actualConfig = FormConfigBuilder.build(formDetails, appConfig);
@@ -108,7 +114,8 @@ describe('Form Config Builder', () => {
       datatype: 'N/A',
       config: {showPanelView: false},
       answers: [],
-      class: 'Misc'
+      class: 'Misc',
+      range: [undefined, undefined]
     };
 
     const actualConfig = FormConfigBuilder.build(formDetails, appConfig);
@@ -138,7 +145,8 @@ describe('Form Config Builder', () => {
       datatype: 'Coded',
       config: {showPanelView: false},
       answers: ['Abdominal pain', 'Abdominal Lump', 'Anorexia'],
-      class: 'Misc'
+      class: 'Misc',
+      range: [undefined, undefined]
     };
 
     const actualConfig = FormConfigBuilder.build(formDetails, appConfig);

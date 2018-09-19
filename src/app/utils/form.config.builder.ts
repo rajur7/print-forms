@@ -7,6 +7,7 @@ export class FormConfigBuilder {
     formJson.datatype = form.datatype.display;
     formJson.answers = [];
     formJson.class = form.conceptClass.name;
+    formJson.range = [form.hiNormal, form.lowNormal];
     if (form.answers.length > 0) {
       form.answers.map( answer => formJson.answers.push(answer.name.display));
     }
