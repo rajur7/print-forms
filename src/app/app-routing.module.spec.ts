@@ -13,6 +13,7 @@ import { FilterPipe } from './filter.pipe';
 import { FormListComponent } from './form-list/form-list.component';
 import { ConceptComponent } from './concept/concept.component';
 import { ConceptSetComponent } from './concept-set/concept-set.component';
+import { TextBoxComponent } from './elements/text-box/text-box.component';
 
 describe('AppRoutingModule', () => {
   let location: Location;
@@ -28,7 +29,7 @@ describe('AppRoutingModule', () => {
       ],
       declarations: [
         AppComponent, FormComponent, HeaderComponent, FormListComponent,
-        ErrorMessageComponent, FilterPipe, ConceptComponent, ConceptSetComponent,
+        ErrorMessageComponent, FilterPipe, ConceptComponent, ConceptSetComponent, TextBoxComponent
       ]
     });
 

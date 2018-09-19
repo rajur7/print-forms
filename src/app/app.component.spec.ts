@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '../../node_modules/@angular/common/http/testing';
 import { ConceptSetComponent } from './concept-set/concept-set.component';
 import { ConceptComponent } from './concept/concept.component';
+import { TextBoxComponent } from './elements/text-box/text-box.component';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
@@ -33,6 +34,7 @@ describe('AppComponent', () => {
         FormListComponent,
         ConceptSetComponent,
         ConceptComponent,
+        TextBoxComponent,
         FilterPipe
       ],
       providers: [{provide: UserService, useValue: userServiceMock}]

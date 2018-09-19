@@ -7,12 +7,8 @@ import { tick } from '@angular/core/testing';
   templateUrl: './text-box.component.html',
   styleUrls: ['./text-box.component.scss']
 })
-export class TextBoxComponent implements OnInit {
+export class TextBoxComponent {
 
   @Input() member: any;
   constructor() { }
-
-  ngOnInit(): void {
-    console.log(this.member);
-  }
 }

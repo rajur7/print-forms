@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConceptSetComponent } from './concept-set.component';
 import { ConceptComponent } from '../concept/concept.component';
+import { TextBoxComponent } from '../elements/text-box/text-box.component';
 
 describe('ConceptSetComponent', () => {
   let component: ConceptSetComponent;
@@ -9,7 +10,7 @@ describe('ConceptSetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConceptSetComponent, ConceptComponent ]
+      declarations: [ ConceptSetComponent, ConceptComponent, TextBoxComponent ]
     })
     .compileComponents();
   }));

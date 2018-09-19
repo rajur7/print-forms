@@ -7,6 +7,7 @@ import { instance, mock, verify, when } from 'ts-mockito';
 import { ConceptsService } from '../concepts.service';
 import { ConceptSetComponent } from '../concept-set/concept-set.component';
 import { ConceptComponent } from '../concept/concept.component';
+import { TextBoxComponent } from '../elements/text-box/text-box.component';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -17,9 +18,7 @@ describe('FormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormComponent,
-        ConceptSetComponent,
-        ConceptComponent],
+      declarations: [FormComponent, ConceptSetComponent, ConceptComponent, TextBoxComponent],
       providers: [{provide: ActivatedRoute, useValue: {params: from([{formName: 'test form'}])}},
         {provide: ConceptsService, useValue: conceptServiceMock}]
     })

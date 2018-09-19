@@ -19,7 +19,14 @@ describe('TextBoxComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Text-box component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have label & input elements', () => {
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
+    expect(compiled.querySelector('input')).not.toBeNull();
   });
 });
