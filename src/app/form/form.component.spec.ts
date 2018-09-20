@@ -36,7 +36,6 @@ describe('FormComponent', () => {
     when(ConceptServiceMock.getAppConfig()).thenReturn(appConfig);
     when(ConceptServiceMock.getFormDetails('test form')).thenReturn(formDetails);
     formConfigBuilder = spyOn(FormConfigBuilder, 'build');
-    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
   });
@@ -77,8 +76,38 @@ describe('FormComponent', () => {
 
   it('should call isTabular method of conceptUtils', () => {
     const member = {};
+    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     component.isTabular(member);
 
     expect(conceptUtils).toHaveBeenCalledWith(member);
+  });
+
+  it('should display app-tabular-view for setMembers when isTabular and set property is true', function () {
+    component.form = {
+      name: 'test member', setMembers: [
+        { name: 'member1', set: true, config: {isTabular: true}},
+        { name: 'member2', set: true, config: {isTabular: true}}
+      ]
+    };
+    fixture.detectChanges();
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(true);
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-tabular-view').length).toBe(2);
+    expect(compiled.querySelector('app-tabular-view')).not.toBeNull();
+  });
+
+  it('should not display app-tabular-view when isTabular property is false', function () {
+    component.form = {
+      name: 'test member', setMembers: [ { name: 'member1', set: true, config: {isTabular: false}, setMembers: []},
+        { name: 'member2', set: true, config: {isTabular: false}, setMembers: []}
+        ]
+    };
+    fixture.detectChanges();
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(false);
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-tabular-view')).toBeNull();
+    expect(compiled.querySelector('app-concept-set')).not.toBeNull();
   });
 });

@@ -22,7 +22,6 @@ describe('TabularViewComponent', () => {
     fixture = TestBed.createComponent(TabularViewComponent);
     component = fixture.componentInstance;
     component.member = {setMembers: []};
-    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture.detectChanges();
   });
 
@@ -33,8 +32,111 @@ describe('TabularViewComponent', () => {
 
   it('should call isTabular method of conceptUtils', () => {
     const member = {};
+    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     component.isTabular(member);
 
     expect(conceptUtils).toHaveBeenCalledWith(member);
+  });
+
+  it('should display concept-name in strong tag', function () {
+    component.member = {name: 'test member', setMembers: []};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('strong').length).toBe(1);
+    expect(compiled.querySelector('strong').innerText).toEqual('test member');
+  });
+
+  it('should display concept-heading for all setMembers', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        {name: 'member1', set: false},
+        {name: 'member2', set: false},
+      ]
+    };
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('div')[3].getAttribute('class')).toEqual('concept-heading');
+    expect(compiled.getElementsByClassName('concept-heading').length).toBe(2);
+  });
+
+  it('should not display concept-heading when set-members is empty', function () {
+    component.member = {
+      name: 'test member', setMembers: []
+    };
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('concept-heading').length).toBe(0);
+  });
+
+  it('should display app-concept for setMembers when set property is false ', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        {name: 'member1', set: false},
+        {name: 'member2', set: false}
+      ]
+    };
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-concept').length).toBe(2);
+    expect(compiled.querySelector('app-concept')).not.toBeNull();
+  });
+
+  it('should display app-concept for 2nd level of setMembers when set property is false ', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        {
+          name: 'member1', set: true, setMembers: [
+            {name: 'member1', set: false},
+            {name: 'member2', set: false}]
+        }
+      ]
+    };
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-concept').length).toBe(2);
+    expect(compiled.querySelector('app-concept')).not.toBeNull();
+  });
+
+  it('should display app-concept-set for 2nd level of setMembers when set property is true' +
+    ' but isTabular is false ', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        {
+          name: 'member1', set: true, setMembers: [
+            {name: 'member1', set: true, setMembers: []},
+            {name: 'member2', set: true, setMembers: []}]
+        }
+      ]
+    };
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(false);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-concept-set').length).toBe(2);
+    expect(compiled.querySelector('app-concept-set')).not.toBeNull();
+    expect(compiled.querySelector('app-concept')).toBeNull();
+  });
+
+  it('should display app-tabular-view for 2nd level of setMembers when set property and isTabular is true ', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        {
+          name: 'member1', set: true, setMembers: [
+            {name: 'member1', set: true},
+            {name: 'member2', set: true}]
+        }
+      ]
+    };
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(true);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-tabular-view').length).toBe(2);
+    expect(compiled.querySelector('app-tabular-view')).not.toBeNull();
   });
 });

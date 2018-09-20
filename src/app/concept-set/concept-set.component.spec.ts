@@ -49,7 +49,7 @@ describe('ConceptSetComponent', () => {
   });
 
   it('should display only concept component when set members are not concept sets', function () {
-    component.member = {name: 'test member', setMembers : [{name: 'member1', set: false}, {name: 'member2', set: false}]};
+    component.member = {name: 'test member', setMembers: [{name: 'member1', set: false}, {name: 'member2', set: false}]};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
@@ -104,10 +104,70 @@ describe('ConceptSetComponent', () => {
   });
 
   it('should call isTabular method of conceptUtils', () => {
-    const member = {};
     conceptUtils = spyOn(ConceptUtils, 'isTabular');
+    const member = {};
     component.isTabular(member);
 
     expect(conceptUtils).toHaveBeenCalledWith(member);
   });
+
+  it('should display app-tabular-view when isTabular property is true ', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        { name: 'member1', set: true, config: {isTabular: true}},
+        { name: 'member2', set: true, config: {isTabular: true}}
+      ]
+    };
+    fixture.detectChanges();
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(true);
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-tabular-view').length).toBe(2);
+    expect(compiled.querySelector('app-tabular-view')).not.toBeNull();
+  });
+
+  it('should display app-concept for 2nd level setMembers of tabular-concept ' +
+    ' when set property is false ', function () {
+    component.member = {
+      name: 'test member', setMembers: [
+        { name: 'member1', set: true, config: {isTabular: true}, setMembers: [{name: 'member1', set: false, setMembers: []}]},
+        { name: 'member2', set: true, config: {isTabular: true}}
+      ]
+    };
+    fixture.detectChanges();
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(true);
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-tabular-view').length).toBe(2);
+    expect(compiled.querySelector('app-tabular-view')).not.toBeNull();
+    expect(compiled.querySelectorAll('app-concept').length).toBe(1);
+    expect(compiled.querySelector('app-concept')).not.toBeNull();
+  });
+
+  it('should not display app-tabular-view when isTabular property is false', function () {
+    component.member = {
+      name: 'test member', setMembers: [{ name: 'member1', set: true, config: {isTabular: false}, setMembers: []},
+        { name: 'member2', set: true, config: {isTabular: false}, setMembers: []}]
+    };
+    fixture.detectChanges();
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(false);
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-tabular-view')).toBeNull();
+    expect(compiled.querySelector('app-concept-set')).not.toBeNull();
+  });
+
+  it('should not display app-tabular-view when set property is false' +
+    ' but isTabular property is true ', function () {
+    component.member = {
+      name: 'test member', setMembers: [{ name: 'member1', set: false, config: {isTabular: true}}]
+    };
+    fixture.detectChanges();
+    spyOn(ConceptUtils, 'isTabular').and.returnValue(true);
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('app-concept').length).toBe(1);
+    expect(compiled.querySelector('app-tabular-view')).toBeNull();
+  });
 });
+
