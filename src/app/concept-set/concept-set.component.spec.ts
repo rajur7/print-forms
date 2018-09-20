@@ -22,7 +22,6 @@ describe('ConceptSetComponent', () => {
     fixture = TestBed.createComponent(ConceptSetComponent);
     component = fixture.componentInstance;
     component.member = {name: 'test member', set: true, setMembers: []};
-    component.member = {name: 'test member'};
     conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture.detectChanges();
   });

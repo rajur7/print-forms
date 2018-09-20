@@ -24,11 +24,29 @@ describe('TextBoxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have label & input elements', () => {
+  it('should have label & input elements when datatype is not Text', () => {
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
     expect(compiled.querySelector('input')).not.toBeNull();
+  });
+
+  it('should have label & input elements when there is conciseText true config', () => {
+    component.member = { datatype: 'Text', config: { conciseText: true}};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
+    expect(compiled.querySelector('input')).not.toBeNull();
+  });
+
+  it('should have textarea element when there is no config for member', () => {
+    component.member = { datatype: 'Text'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
+    expect(compiled.querySelector('textarea')).not.toBeNull();
   });
 
   it('should have button element when member is abnormal', () => {
