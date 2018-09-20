@@ -1,7 +1,6 @@
 .tabular-concept {
   text-align: left;
-  font-family: OpenSansBold;
-  font-size: 12px;
+  font-family: OpenSansBold, Arial,sans-serif;
   padding: 0 0 5px;
   color: #666;
 }
@@ -16,14 +15,19 @@
   margin: 10px 10px 10px 10px;
 }
 
-.concept-heading{
+strong {
+  font-weight: bold;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.concept-name{
   font-size: 11px;
   border-collapse: collapse;
   border-spacing: 0;
   background: #ddd;
   padding: 7px;
   font-weight: 700;
-  font-family: OpenSans,Arial,sans-serif;
   width: auto;
   word-break: normal;
   text-align: left;
@@ -31,5 +35,6 @@
   vertical-align: inherit;
   display: flex;
   flex: 1;
+  color: #363463;;
 }
 

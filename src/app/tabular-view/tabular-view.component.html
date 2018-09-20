@@ -2,7 +2,7 @@
   <strong>{{member.name}}</strong>
   <div class="container">
     <div class= "container-element" *ngFor="let member of member.setMembers">
-        <div class="concept-heading">{{member.name}}</div>
+        <div class="concept-name">{{member.name}}</div>
       <app-concept *ngIf="!member.set" [member]="member"></app-concept>
       <div *ngFor="let tabularMember of member.setMembers">
         <app-concept *ngIf="!tabularMember.set" [member]="tabularMember"></app-concept>

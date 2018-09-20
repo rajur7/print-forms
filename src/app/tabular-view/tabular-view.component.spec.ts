@@ -57,8 +57,8 @@ describe('TabularViewComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.querySelectorAll('div')[3].getAttribute('class')).toEqual('concept-heading');
-    expect(compiled.getElementsByClassName('concept-heading').length).toBe(2);
+    expect(compiled.querySelectorAll('div')[3].getAttribute('class')).toEqual('concept-name');
+    expect(compiled.getElementsByClassName('concept-name').length).toBe(2);
   });
 
   it('should not display concept-heading when set-members is empty', function () {
@@ -68,7 +68,7 @@ describe('TabularViewComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('concept-heading').length).toBe(0);
+    expect(compiled.getElementsByClassName('concept-name').length).toBe(0);
   });
 
   it('should display app-concept for setMembers when set property is false ', function () {
