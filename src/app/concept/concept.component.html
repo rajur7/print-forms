@@ -3,5 +3,6 @@
   <div [ngSwitch]="member.datatype" class="answer">
   <app-text-box *ngSwitchCase="'Text'" [member]="member"></app-text-box>
   <app-text-box *ngSwitchCase="'Numeric'" [member]="member"></app-text-box>
+  <app-text-box *ngSwitchCase="'Date'" [member]="member"></app-text-box>
 </div>
 </div>

@@ -48,4 +48,12 @@ describe('ConceptComponent', () => {
 
     expect(compiled.querySelector('app-text-box')).not.toBeNull();
   });
+
+  it('should have text box component when member datatype is date', function () {
+    component.member = { name : 'test member', datatype : 'Date'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-text-box')).not.toBeNull();
+  });
 });
