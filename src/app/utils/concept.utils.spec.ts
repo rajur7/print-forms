@@ -25,4 +25,28 @@ describe('Concept Utils', () => {
 
     expect(ConceptUtils.isTabular(testConfig)).toBeFalsy();
   });
+
+  it('should return undefined merged concept', function () {
+    const member = {name: 'test member', set: true, setMembers: [{class: 'Abnormal'}]};
+
+    expect(ConceptUtils.getMergedAbnormalConcept(member)).toBeUndefined();
+  });
+
+  it('should return merged concept with isAbnormal set to true', function () {
+    const member = {name: 'test member', set: true, setMembers: [{class: 'Misc'}]};
+
+    expect(ConceptUtils.getMergedAbnormalConcept(member).isAbnormal).toBeTruthy();
+  });
+
+  it('should set abnormal to true when member contains abnormal concepts', function () {
+    const member = {name: 'test member', set: true, setMembers: [{class: 'Abnormal'}]};
+
+    expect(ConceptUtils.isAbnormal(member)).toBeTruthy();
+  });
+
+  it('should set abnormal remains false when member contains no abnormal concepts', function () {
+    const member = {name: 'test member', set: true, setMembers: []};
+
+    expect(ConceptUtils.isAbnormal(member)).toBeFalsy();
+  });
 });

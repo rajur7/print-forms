@@ -17,24 +17,10 @@ export class ConceptSetComponent implements OnInit {
     return ConceptUtils.isTabular(member);
   }
   ngOnInit(): void {
-    this.abnormal = this.isAbnormal();
+    this.abnormal = ConceptUtils.isAbnormal(this.member);
   }
 
-  getMergedConcept() {
-    for (const member of this.member.setMembers) {
-      if (member.class !== 'Abnormal') {
-        member.isAbnormal = true;
-        return member;
-      }
-    }
-  }
-
-  private isAbnormal(): boolean {
-    for (const member of this.member.setMembers) {
-      if (member.class === 'Abnormal') {
-        return true;
-      }
-    }
-    return false;
+  getMergedAbnormalConcept() {
+    return ConceptUtils.getMergedAbnormalConcept(this.member);
   }
 }

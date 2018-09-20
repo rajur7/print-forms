@@ -6,15 +6,12 @@ import { ngCopy } from 'angular-6-clipboard';
   templateUrl: './error-message.component.html',
   styleUrls: ['./error-message.component.scss']
 })
-export class ErrorMessageComponent implements OnInit {
+export class ErrorMessageComponent {
 
   hasVisibility = true;
   @Input() errorMessage: String;
 
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
   hideMessage() {

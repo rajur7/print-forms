@@ -9,4 +9,22 @@ export class ConceptUtils {
     }
     return false;
   }
+
+  public static getMergedAbnormalConcept(conceptSet: any) {
+    for (const member of conceptSet.setMembers) {
+      if (member.class !== 'Abnormal') {
+        member.isAbnormal = true;
+        return member;
+      }
+    }
+  }
+
+  public static isAbnormal(conceptSet: any) {
+    for (const member of conceptSet.setMembers) {
+      if (member.class === 'Abnormal') {
+        return true;
+      }
+    }
+    return false;
+  }
 }

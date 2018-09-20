@@ -22,7 +22,6 @@ describe('ConceptSetComponent', () => {
     fixture = TestBed.createComponent(ConceptSetComponent);
     component = fixture.componentInstance;
     component.member = {name: 'test member', set: true, setMembers: []};
-    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     fixture.detectChanges();
   });
 
@@ -79,42 +78,20 @@ describe('ConceptSetComponent', () => {
     expect(compiled.querySelector('app-concept')).toBeNull();
   });
 
-  it('should set abnormal to true when member contains abnormal concepts', function () {
-    component.member = {name: 'test member', set: true, setMembers: [{class: 'Abnormal'}]};
-    fixture.detectChanges();
+  it('should call isAbnormal in ConceptUtils on ngOnInt call', function () {
+    conceptUtils = spyOn(ConceptUtils, 'isAbnormal');
 
     component.ngOnInit();
 
-    expect(component.abnormal).toBeTruthy();
+    expect(conceptUtils).toHaveBeenCalledWith(component.member);
   });
 
-  it('should set abnormal remains false when member contains no abnormal concepts', function () {
-    component.member = {name: 'test member', set: true, setMembers: []};
-    fixture.detectChanges();
+  it('should call getMergedAbnormalConcept in ConceptUtils when isAbnormal is undefined', function () {
+    conceptUtils = spyOn(ConceptUtils, 'getMergedAbnormalConcept');
 
-    component.ngOnInit();
+    const mergedConcept = component.getMergedAbnormalConcept();
 
-    expect(component.abnormal).toBeFalsy();
-  });
-
-  it('should return merged concept with isAbnormal set to true', function () {
-    component.member = {name: 'test member', set: true, setMembers: [{class: 'Misc'}]};
-    fixture.detectChanges();
-
-    const mergedConcept = component.getMergedConcept();
-
-    expect(mergedConcept).not.toBeNull();
-    expect(mergedConcept.isAbnormal).toBeTruthy();
-  });
-
-
-  it('should return merged concept with isAbnormal undefined', function () {
-    component.member = {name: 'test member', set: true, setMembers: [{class: 'Abnormal'}]};
-    fixture.detectChanges();
-
-    const mergedConcept = component.getMergedConcept();
-
-    expect(mergedConcept).toBeUndefined();
+    expect(conceptUtils).toHaveBeenCalledWith(component.member);
   });
 
   it('should have only one concept on abnormal concept set ', function () {
@@ -128,6 +105,7 @@ describe('ConceptSetComponent', () => {
 
   it('should call isTabular method of conceptUtils', () => {
     const member = {};
+    conceptUtils = spyOn(ConceptUtils, 'isTabular');
     component.isTabular(member);
 
     expect(conceptUtils).toHaveBeenCalledWith(member);
