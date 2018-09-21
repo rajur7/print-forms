@@ -5,6 +5,7 @@
   float: left;
   padding-top: 10px;
   height: 20px;
+  display: inline-block;
 }
 .concept{
   font-family: OpenSans,Arial,sans-serif,Arial,sans-serif;
@@ -18,4 +19,11 @@
   width: 75%;
   float: left;
   margin-left: 5%;
+}
+p {
+  display: inline-block;
+}
+.required{
+  padding-left: 3px;
+  font-size: 15px;
 }

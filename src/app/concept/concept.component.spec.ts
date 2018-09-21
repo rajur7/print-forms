@@ -56,4 +56,20 @@ describe('ConceptComponent', () => {
 
     expect(compiled.querySelector('app-text-box')).not.toBeNull();
   });
+
+  it('should have asterick when config required is true', function () {
+    component.member = { name : 'test member', datatype : 'Date', config: {required: true}};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('required')[0].textContent).toEqual('*');
+  });
+
+  it('should not have asterick when config required is false', function () {
+    component.member = { name : 'test member', datatype : 'Date', config: {required: false}};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('required').length).toEqual(0);
+  });
 });
