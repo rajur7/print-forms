@@ -72,4 +72,20 @@ describe('ConceptComponent', () => {
 
     expect(compiled.getElementsByClassName('required').length).toEqual(0);
   });
+
+  it('should add units to label when units config is not null', function () {
+    component.member = { name : 'test member', units: 'mm'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('units')[0].textContent).toBe(' (mm)');
+  });
+
+  it('should not add units to label when units config is null', function () {
+    component.member = { name : 'test member'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('units').length).toBe(0);
+  });
 });

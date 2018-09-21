@@ -1,6 +1,7 @@
 <div class="concept">
   <div class="question">
     <p>{{member.name}}</p>
+    <p class = "units" *ngIf="member.units"> ({{member.units}})</p>
     <p class="required" *ngIf="member.config && member.config.required">*</p>
   </div>
   <div [ngSwitch]="member.datatype" class="answer">
