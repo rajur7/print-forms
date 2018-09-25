@@ -103,7 +103,7 @@ describe('ConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('units')[0].textContent).toBe(' (mm)');
+    expect(compiled.getElementsByClassName('concept')[0].querySelector('p').textContent).toBe('test member (mm)');
   });
 
   it('should not add units to label when units config is null', function () {
@@ -111,6 +111,6 @@ describe('ConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('units').length).toBe(0);
+    expect(compiled.getElementsByClassName('concept')[0].querySelector('p').textContent).toBe('test member');
   });
 });
