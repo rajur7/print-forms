@@ -1,9 +1,10 @@
 <div class="concept">
   <div class="question">
     <p *ngIf="!member.units">{{member.name}}</p>
-    <p *ngIf="member.units">{{member.name}} ({{member.units}})</p>
-    <p class="test-dateformat" *ngIf="member.datatype ==='Date'">&nbsp;(dd/mm/yyyy)</p>
+    <p *ngIf="member.units">{{member.name}}&nbsp;({{member.units}})</p>
+    <p class="test-dateformat" *ngIf="member.datatype ==='Date'">&nbsp;(DD/MM/YYYY)</p>
     <p class="required" *ngIf="member.config && member.config.required">*</p>
+    <p *ngIf="member.datatype === 'Coded'">&nbsp;(Use Code)</p>
   </div>
   <div [ngSwitch]="member.datatype" class="answer">
     <app-text-box *ngSwitchCase="'Text'" [member]="member"></app-text-box>

@@ -8,24 +8,19 @@
   border: 1px solid black;
 }
 button{
-  color: #333;
-  background: #eee;
-  border: 1px solid #DDD;
+  color: #000;
+  border: 1px solid black;
   padding: 6px 20px 7px;
   display: inline-block;
   line-height: 0.5em;
-  cursor: pointer;
   width: 90px;
-  text-decoration: none;
-  margin: 15px 0 0 10px;
-  opacity: .7;
+  margin: 16px 0 0 10px;
 }
 .hint {
   font-size: 11px;
   display: inline-block;
-  color: #666;
   float: left;
-  padding: 0 10px 0;
+  padding: 5px 10px 0;
   width: 100px;
   margin: 15px 0 0;
 }
@@ -50,3 +45,4 @@ textarea{
     top: 15px;
     width: 40%;
 }
+

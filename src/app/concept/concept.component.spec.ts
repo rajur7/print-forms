@@ -103,7 +103,7 @@ describe('ConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('concept')[0].querySelector('p').textContent).toBe('test member (mm)');
+    expect(compiled.getElementsByClassName('concept')[0].querySelector('p').textContent).toContain('(mm)');
   });
 
   it('should not add units to label when units config is null', function () {
@@ -114,15 +114,31 @@ describe('ConceptComponent', () => {
     expect(compiled.getElementsByClassName('concept')[0].querySelector('p').textContent).toBe('test member');
   });
 
-  it('should add dd/mm/yyyy to label when dataType is date ', function () {
+  it('should add use code hint to label when datatype is coded', function () {
+    component.member = { name : 'test member', datatype: 'Coded'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('concept')[0].textContent).toContain('(Use Code)');
+  });
+
+  it('should not add use code hint to label when datatype is not coded', function () {
+    component.member = { name : 'test member'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('concept')[0].textContent).not.toContain('(Use Code)');
+  });
+
+  it('should add DD/MM/YYYY to label when dataType is date ', function () {
     component.member = { name : 'test member', datatype: 'Date'};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('test-dateformat')[0].textContent.trim()).toEqual('(dd/mm/yyyy)');
+    expect(compiled.getElementsByClassName('test-dateformat')[0].textContent.trim()).toEqual('(DD/MM/YYYY)');
   });
 
-  it('should not add dd/mm/yyyy to label when dataType is not date ', function () {
+  it('should not add DD/MM/YYYY to label when dataType is not date ', function () {
     component.member = { name : 'test member', datatype: 'Text'};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
