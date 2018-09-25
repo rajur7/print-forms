@@ -1,29 +1,29 @@
-.question{
+.question {
   font-size: 12px;
-  text-align: right;
-  width: 20%;
-  float: left;
   padding-top: 10px;
-  height: 20px;
-  display: inline-block;
+  flex: 1;
+  margin-right: 2%;
+  text-align: right;
 }
-.concept{
-  font-family: OpenSans,Arial,sans-serif,Arial,sans-serif;
-  width: 100%;
+
+.concept {
+  font-family: OpenSans, Arial, sans-serif, Arial, sans-serif;
   line-height: 1.5;
   height: 50px;
-  margin-left: 5px;
-  padding-top: 5px;
+  display: flex;
 }
-.answer{
-  width: 75%;
+
+.answer {
   float: left;
-  margin-left: 5%;
+  flex: 2;
+  margin-right: 2%;
 }
+
 p {
   display: inline-block;
 }
-.required{
+
+.required {
   padding-left: 3px;
   font-size: 15px;
 }
