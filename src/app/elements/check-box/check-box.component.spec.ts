@@ -29,8 +29,8 @@ describe('CheckBoxComponent', () => {
     expect(compiled.querySelector('div').getAttribute('class')).toEqual('Boolean');
     expect(compiled.querySelectorAll('button').length).toEqual(2);
     expect(compiled.querySelectorAll('p').length).toEqual(2);
-    expect(compiled.querySelectorAll('p')[0].textContent).toEqual('True');
-    expect(compiled.querySelectorAll('p')[1].textContent).toEqual('False');
+    expect(compiled.querySelectorAll('p')[0].textContent).toEqual('Yes');
+    expect(compiled.querySelectorAll('p')[1].textContent).toEqual('No');
   });
 
 });
