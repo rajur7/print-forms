@@ -50,6 +50,16 @@ describe('TextBoxComponent', () => {
     expect(compiled.querySelector('textarea')).not.toBeNull();
   });
 
+  it('should have textarea element when there is config for member and conciseText is not true', () => {
+    component.member = { datatype: 'Text', config: {}};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
+    expect(compiled.querySelector('textarea')).not.toBeNull();
+  });
+
+
   it('should have button element when member is abnormal', () => {
     component.member = {isAbnormal: true, range: []};
     fixture.detectChanges();

@@ -1,5 +1,6 @@
 <label class="text-answer" *ngIf="member.datatype === 'Text'">
   <textarea *ngIf="!member.config" disabled ></textarea>
+  <textarea *ngIf="member.config && !member.config.conciseText" disabled ></textarea>
   <input *ngIf="member.config && member.config.conciseText" class = {{member.datatype}} disabled >
 </label>
 <label class="text-answer" *ngIf="member.datatype !== 'Text'">
