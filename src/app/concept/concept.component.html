@@ -1,12 +1,13 @@
 <div class="concept">
   <div class="question">
     <p>{{member.name}}</p>
-    <p class = "units" *ngIf="member.units"> ({{member.units}})</p>
+    <p class="units" *ngIf="member.units"> ({{member.units}})</p>
     <p class="required" *ngIf="member.config && member.config.required">*</p>
   </div>
   <div [ngSwitch]="member.datatype" class="answer">
-  <app-text-box *ngSwitchCase="'Text'" [member]="member"></app-text-box>
-  <app-text-box *ngSwitchCase="'Numeric'" [member]="member"></app-text-box>
-  <app-text-box *ngSwitchCase="'Date'" [member]="member"></app-text-box>
-</div>
+    <app-text-box *ngSwitchCase="'Text'" [member]="member"></app-text-box>
+    <app-text-box *ngSwitchCase="'Numeric'" [member]="member"></app-text-box>
+    <app-text-box *ngSwitchCase="'Date'" [member]="member"></app-text-box>
+    <app-text-box *ngSwitchCase="'Coded'" [member]="member"></app-text-box>
+  </div>
 </div>

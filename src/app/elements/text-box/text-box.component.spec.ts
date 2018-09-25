@@ -38,6 +38,7 @@ describe('TextBoxComponent', () => {
 
     expect(compiled.querySelector('label').getAttribute('class')).toEqual('text-answer');
     expect(compiled.querySelector('input')).not.toBeNull();
+    expect(compiled.querySelector('input').getAttribute('class')).toEqual('Text');
   });
 
   it('should have textarea element when there is no config for member', () => {

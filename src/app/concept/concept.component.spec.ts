@@ -57,6 +57,14 @@ describe('ConceptComponent', () => {
     expect(compiled.querySelector('app-text-box')).not.toBeNull();
   });
 
+  it('should have text box component when member datatype is Coded', function () {
+    component.member = { name : 'test member', datatype : 'Coded'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-text-box')).not.toBeNull();
+  });
+
   it('should have asterick when config required is true', function () {
     component.member = { name : 'test member', datatype : 'Date', config: {required: true}};
     fixture.detectChanges();

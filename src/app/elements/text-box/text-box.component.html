@@ -1,9 +1,9 @@
 <label class="text-answer" *ngIf="member.datatype === 'Text'">
   <textarea *ngIf="!member.config"></textarea>
-  <input *ngIf="member.config && member.config.conciseText">
+  <input *ngIf="member.config && member.config.conciseText" class = {{member.datatype}}>
 </label>
 <label class="text-answer" *ngIf="member.datatype !== 'Text'">
-  <input>
+  <input class = {{member.datatype}}>
 </label>
  <div class="abnormal" *ngIf="member.isAbnormal">
    <p class="hint" *ngIf="member.range[0] && member.range[1]">({{member.range[0]}}-{{member.range[1]}})</p>
