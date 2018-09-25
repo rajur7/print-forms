@@ -5,6 +5,7 @@ import { ConceptSetComponent } from '../concept-set/concept-set.component';
 import { TextBoxComponent } from '../elements/text-box/text-box.component';
 import { ConceptComponent } from '../concept/concept.component';
 import { ConceptUtils } from '../utils/concept.utils';
+import { CheckBoxComponent } from '../elements/check-box/check-box.component';
 
 describe('TabularViewComponent', () => {
   let component: TabularViewComponent;
@@ -13,7 +14,7 @@ describe('TabularViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent ]
+      declarations: [ ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent, CheckBoxComponent ]
     })
     .compileComponents();
   }));

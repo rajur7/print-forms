@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConceptComponent } from './concept.component';
 import { TextBoxComponent } from '../elements/text-box/text-box.component';
+import { CheckBoxComponent } from '../elements/check-box/check-box.component';
 
 describe('ConceptComponent', () => {
   let component: ConceptComponent;
@@ -9,7 +10,7 @@ describe('ConceptComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConceptComponent, TextBoxComponent ]
+      declarations: [ ConceptComponent, TextBoxComponent, CheckBoxComponent ]
     })
     .compileComponents();
   }));
@@ -55,6 +56,22 @@ describe('ConceptComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('app-text-box')).not.toBeNull();
+  });
+
+  it('should have check box component when member datatype is boolean', function () {
+    component.member = { name : 'test member', datatype : 'Boolean'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-check-box')).not.toBeNull();
+  });
+
+  it('should not have check box component when member datatype is not boolean', function () {
+    component.member = { name : 'test member'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-check-box')).toBeNull();
   });
 
   it('should have text box component when member datatype is Coded', function () {
