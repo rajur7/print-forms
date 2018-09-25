@@ -113,4 +113,19 @@ describe('ConceptComponent', () => {
 
     expect(compiled.getElementsByClassName('concept')[0].querySelector('p').textContent).toBe('test member');
   });
+
+  it('should add dd/mm/yyyy to label when dataType is date ', function () {
+    component.member = { name : 'test member', datatype: 'Date'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('test-dateformat')[0].textContent.trim()).toEqual('(dd/mm/yyyy)');
+  });
+
+  it('should not add dd/mm/yyyy to label when dataType is not date ', function () {
+    component.member = { name : 'test member', datatype: 'Text'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.getElementsByClassName('test-dateformat').length).toBe(0);
+  });
 });
