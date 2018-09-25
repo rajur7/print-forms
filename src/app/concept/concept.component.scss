@@ -28,3 +28,17 @@ p {
   padding-left: 3px;
   font-size: 15px;
 }
+
+.horizontalLine{
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1.3px solid black;
+  position: relative;
+  top: 15px;
+  width: 70%;
+}
+
+.notes-label{
+  font-size: 12px;
+}

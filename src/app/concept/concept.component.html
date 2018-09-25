@@ -14,3 +14,11 @@
     <app-check-box *ngSwitchCase="'Boolean'"></app-check-box>
   </div>
 </div>
+<div class="concept" *ngIf="(member.config && !member.config.disableAddNotes)||!member.config">
+  <div class="question">
+  </div>
+  <div class="answer">
+   <p class="notes-label">Notes&nbsp;</p>
+    <input class="horizontalLine"/>
+  </div>
+</div>
