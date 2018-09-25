@@ -41,4 +41,5 @@ Will be updated........
 ### Required privileges to access print-forms app
 * Make sure the logged-in user has the privileges **Get Concepts** and **app:print-forms**.
 * Optional:
-It is recommended to create a role **Print-Forms-App** and inherit the role **Bahmni-App-User-Login** and assign above two privileges
+  * It is recommended to create a role **Print-Forms-App** and inherit the role **Bahmni-App-User-Login** and assign above two privileges to **Print-Forms-App**
+  * Add the role **Print-Forms-App** to the logged-in user.
