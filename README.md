@@ -35,3 +35,10 @@ Run `ng test` for running the test.<br><br>
 Run `http-server -c-1 -o -p 9875 ./coverage` to check coverage in your browser.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deployment
+Will be updated........
+### Required privileges to access print-forms app
+* Make sure the logged-in user has the privileges **Get Concepts** and **app:print-forms**.
+* Optional:
+It is recommended to create a role **Print-Forms-App** and inherit the role **Bahmni-App-User-Login** and assign above two privileges
