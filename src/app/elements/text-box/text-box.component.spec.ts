@@ -98,4 +98,20 @@ describe('TextBoxComponent', () => {
 
     expect(compiled.querySelector('p').textContent).toEqual('(< 2)');
   });
+
+  it('should add use code hint to label when datatype is coded', function () {
+    component.member = { name : 'test member', datatype: 'Coded'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('hint')[0].textContent).toContain('(Use Code)');
+  });
+
+  it('should not add use code hint to label when datatype is not coded', function () {
+    component.member = { name : 'test member', datatype: 'Text'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('hint').length).toBe(0);
+  });
 });

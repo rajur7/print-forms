@@ -6,6 +6,7 @@
 <label class="text-answer" *ngIf="member.datatype !== 'Text'">
   <input class = {{member.datatype}} disabled >
 </label>
+<p *ngIf="member.datatype === 'Coded'" class="hint">&nbsp;(Use Code)</p>
  <div class="abnormal" *ngIf="member.isAbnormal">
    <p class="hint" *ngIf="member.range[0] && member.range[1]">({{member.range[0]}}-{{member.range[1]}})</p>
    <p class="hint" *ngIf="member.range[0] && !member.range[1]">(> {{member.range[0]}})</p>
