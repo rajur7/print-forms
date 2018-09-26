@@ -1,6 +1,7 @@
 <div class="concept-set-section" *ngIf="!abnormal">
   <div class="concept-set">
     {{member.name}}
+    <button class="add-more" *ngIf="member.config && member.config.allowAddMore" disabled>[+]</button>
   </div>
 <div *ngFor="let member of member.setMembers">
   <app-concept *ngIf="!member.set" [member]="member"></app-concept>

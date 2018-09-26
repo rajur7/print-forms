@@ -159,10 +159,24 @@ describe('ConceptComponent', () => {
     expect(compiled.getElementsByClassName('notes-label')[0].textContent.trim()).toEqual('Notes');
   });
 
-  it('should not have notes label when disable notes is true  ', function () {
+  it('should not have notes label when disable notes is true', function () {
     component.member = { name : 'test member', datatype: 'Text', config: {disableAddNotes: true}};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.getElementsByClassName('notes-label').length).toBe(0);
+  });
+
+  it('should have + button when config allowAddMore  is true', function () {
+    component.member = { name : 'test member', datatype: 'Text', config: {allowAddMore: true}};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.getElementsByClassName('add-more').length).toBe(1);
+  });
+
+  it('should not have + button when config allowAddMore  is not true', function () {
+    component.member = { name : 'test member', datatype: 'Text'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.getElementsByClassName('add-more').length).toBe(0);
   });
 });

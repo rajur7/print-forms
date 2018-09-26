@@ -170,5 +170,19 @@ describe('ConceptSetComponent', () => {
     expect(compiled.querySelectorAll('app-concept').length).toBe(1);
     expect(compiled.querySelector('app-tabular-view')).toBeNull();
   });
+
+  it('should have + button when config allowAddMore  is true', function () {
+    component.member = { name : 'test member', datatype: 'Text', config: {allowAddMore: true}};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.getElementsByClassName('add-more').length).toBe(1);
+  });
+
+  it('should not have + button when config allowAddMore  is not true', function () {
+    component.member = { name : 'test member', datatype: 'Text'};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.getElementsByClassName('add-more').length).toBe(0);
+  });
 });
 
