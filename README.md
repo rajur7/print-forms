@@ -1,7 +1,7 @@
 # PrintForms
 This repository is for printing forms in bahmni so that they can be filled offline. Currently it supports only forms 1.0(means forms under 'All Observation templates, not form builder forms).
 ## Dev Setting
-This is completely written in angular-6.<br><br>
+This is completely written in angular-6
 ### Prerequisites
 `brew install npm`<br><br>
 `brew install http-server`  (Install http-server for checking test coverage)
@@ -21,7 +21,7 @@ Run following script inside your bahmni-vagrant-box.<br><br>
 `sudo sh /bahmni/print-forms/scripts/dev-setup.sh`
 
 #### Add print-forms module to bahmni.
-Add following config in `default-config/openmrs/apps/home/extension.json` file to display print icon on dashboard.<br><br>
+Add following config in `bahmni_config/openmrs/apps/home/extension.json` file to display print icon on dashboard.<br><br>
 `"PrintForms": {
    "id": "bahmni.print.forms",
      "extensionPointId": "org.bahmni.home.dashboard",
