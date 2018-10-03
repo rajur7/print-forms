@@ -23,3 +23,27 @@
   font-family: Arial, FontAwesome, serif;
 }
 
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  font-size: 18px;
+  background: #ccc;
+  margin: 0 5px 2px 0;
+  border-radius: 6px;
+}
+
+.btn:focus{
+  outline: 0;
+  box-shadow: none;
+}
+
+.active{
+  color: #fff;
+  background: #699;
+}
+
+.tab-group{
+  margin-top: 5px;
+  width: 100%
+}

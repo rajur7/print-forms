@@ -12,8 +12,10 @@ import { ConceptUtils } from '../utils/concept.utils';
 export class FormComponent {
   name: String;
   form: any;
+  isFormSelected: Boolean;
 
   constructor(private route: ActivatedRoute, private conceptService: ConceptsService) {
+    this.isFormSelected = true;
     this.route.params.subscribe(params => {
       this.name = params.formName;
       this.initializeForm();
@@ -30,5 +32,9 @@ export class FormComponent {
 
   isTabular(member) {
     return ConceptUtils.isTabular(member);
+  }
+
+  setIsFormSelected(value) {
+    this.isFormSelected = value;
   }
 }

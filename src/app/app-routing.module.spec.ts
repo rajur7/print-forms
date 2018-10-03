@@ -16,6 +16,7 @@ import { ConceptSetComponent } from './concept-set/concept-set.component';
 import { TextBoxComponent } from './elements/text-box/text-box.component';
 import { TabularViewComponent } from './tabular-view/tabular-view.component';
 import { CheckBoxComponent } from './elements/check-box/check-box.component';
+import { CodeSheetComponent } from './code-sheet/code-sheet.component';
 
 describe('AppRoutingModule', () => {
   let location: Location;
@@ -32,7 +33,7 @@ describe('AppRoutingModule', () => {
       declarations: [
         AppComponent, FormComponent, HeaderComponent, FormListComponent,
         ErrorMessageComponent, FilterPipe, ConceptComponent, ConceptSetComponent, TextBoxComponent,
-        TabularViewComponent, CheckBoxComponent,
+        TabularViewComponent, CheckBoxComponent, CodeSheetComponent,
       ]
     });
 

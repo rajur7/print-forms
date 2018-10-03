@@ -1,8 +1,17 @@
 <div *ngIf="form" class="form">
   <div class="formName">{{name}}</div>
-  <div *ngFor="let member of form.setMembers">
-    <app-concept *ngIf="!member.set" [member]="member"></app-concept>
-    <app-concept-set *ngIf="member.set && !isTabular(member)" [member]="member"></app-concept-set>
-    <app-tabular-view *ngIf="member.set && isTabular(member)" [member]="member"></app-tabular-view>
+  <div class="tab-group">
+    <button type="button" class="btn" [class.active]="isFormSelected" (click)="setIsFormSelected(true)">Form</button>
+    <button type="button" class="btn" [class.active]="!isFormSelected" (click)="setIsFormSelected(false)">Code Sheet</button>
+  </div>
+  <div *ngIf="isFormSelected">
+    <div *ngFor="let member of form.setMembers">
+      <app-concept *ngIf="!member.set" [member]="member"></app-concept>
+      <app-concept-set *ngIf="member.set && !isTabular(member)" [member]="member"></app-concept-set>
+      <app-tabular-view *ngIf="member.set && isTabular(member)" [member]="member"></app-tabular-view>
+    </div>
+  </div>
+  <div  *ngIf="!isFormSelected">
+    <app-code-sheet></app-code-sheet>
   </div>
 </div>

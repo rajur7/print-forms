@@ -11,6 +11,7 @@ import { TextBoxComponent } from '../elements/text-box/text-box.component';
 import { TabularViewComponent } from '../tabular-view/tabular-view.component';
 import { ConceptUtils } from '../utils/concept.utils';
 import { CheckBoxComponent } from '../elements/check-box/check-box.component';
+import { CodeSheetComponent } from '../code-sheet/code-sheet.component';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -22,7 +23,8 @@ describe('FormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormComponent, ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent, CheckBoxComponent],
+      declarations: [FormComponent, ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent,
+        CheckBoxComponent, CodeSheetComponent],
       providers: [{provide: ActivatedRoute, useValue: {params: from([{formName: 'test form'}])}},
         {provide: ConceptsService, useValue: conceptServiceMock}]
     })
@@ -49,13 +51,31 @@ describe('FormComponent', () => {
     expect(component.name).toBe('test form');
   });
 
-  it('should display div element with class form and formName', () => {
+  it('should display div element with class form, formName and btn-group', () => {
     component.form = {};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelectorAll('div')[0].getAttribute('class')).toEqual('form');
     expect(compiled.querySelectorAll('div')[1].getAttribute('class')).toEqual('formName');
+    expect(compiled.querySelectorAll('div')[2].getAttribute('class')).toEqual('tab-group');
+  });
+
+  it('should have active in form-button-class attribute by default', function () {
+    component.form = {};
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('button')[0].getAttribute('class')).toContain('active');
+  });
+
+  it('should have active in code-sheet-button class attribute when isFormSelected is false', function () {
+    component.form = {};
+    component.isFormSelected = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('button')[1].getAttribute('class')).toContain('active');
   });
 
   it('should call form config builder with given app config and form details', function () {
@@ -111,4 +131,37 @@ describe('FormComponent', () => {
     expect(compiled.querySelector('app-tabular-view')).toBeNull();
     expect(compiled.querySelector('app-concept-set')).not.toBeNull();
   });
+
+  it('should not display app-code-sheet by default', function () {
+    component.form = {
+      name: 'test member', setMembers: [{name: 'member1', set: true, config: {isTabular: false}, setMembers: []},
+        {name: 'member2', set: true, config: {isTabular: false}, setMembers: []}
+      ]
+    };
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-code-sheet')).toBeNull();
+  });
+
+  it('should  display app-code-sheet when isFormSelected property is false', function () {
+    component.form = {
+      name: 'test member', setMembers: [{name: 'member1', set: true, config: {isTabular: false}, setMembers: []},
+        {name: 'member2', set: true, config: {isTabular: false}, setMembers: []}
+      ]
+    };
+    component.isFormSelected = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('app-code-sheet')).not.toBeNull();
+  });
+
+  it('should set given value to isFormSelected', function () {
+    component.setIsFormSelected(true);
+    expect(component.isFormSelected).toBeTruthy();
+    component.setIsFormSelected(false);
+    expect(component.isFormSelected).toBeFalsy();
+
+  });
+
 });
