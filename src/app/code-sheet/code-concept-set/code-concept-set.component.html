@@ -1,0 +1,5 @@
+<div *ngFor="let member of member.setMembers">
+  <app-code-concept *ngIf="!member.set && member.datatype === 'Coded'" [member]="member"
+                    [section]="getSectionName()"></app-code-concept>
+  <app-code-concept-set *ngIf="member.set" [member]="member"></app-code-concept-set>
+</div>

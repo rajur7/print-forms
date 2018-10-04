@@ -16,6 +16,8 @@ import { TextBoxComponent } from './elements/text-box/text-box.component';
 import { TabularViewComponent } from './tabular-view/tabular-view.component';
 import { CheckBoxComponent } from './elements/check-box/check-box.component';
 import { CodeSheetComponent } from './code-sheet/code-sheet.component';
+import { CodeConceptComponent } from './code-sheet/code-concept/code-concept.component';
+import { CodeConceptSetComponent } from './code-sheet/code-concept-set/code-concept-set.component';
 
 describe('AppComponent', () => {
   const UserServiceMock: UserService = mock(UserService);
@@ -41,6 +43,8 @@ describe('AppComponent', () => {
         TabularViewComponent,
         CheckBoxComponent,
         CodeSheetComponent,
+        CodeConceptComponent,
+        CodeConceptSetComponent,
         FilterPipe
       ],
       providers: [{provide: UserService, useValue: userServiceMock}]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-code-sheet',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodeSheetComponent implements OnInit {
 
-  constructor() { }
+  @Input() form: any;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

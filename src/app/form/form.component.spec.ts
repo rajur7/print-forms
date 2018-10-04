@@ -12,6 +12,8 @@ import { TabularViewComponent } from '../tabular-view/tabular-view.component';
 import { ConceptUtils } from '../utils/concept.utils';
 import { CheckBoxComponent } from '../elements/check-box/check-box.component';
 import { CodeSheetComponent } from '../code-sheet/code-sheet.component';
+import { CodeConceptComponent } from '../code-sheet/code-concept/code-concept.component';
+import { CodeConceptSetComponent } from '../code-sheet/code-concept-set/code-concept-set.component';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -24,7 +26,7 @@ describe('FormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [FormComponent, ConceptSetComponent, ConceptComponent, TextBoxComponent, TabularViewComponent,
-        CheckBoxComponent, CodeSheetComponent],
+        CheckBoxComponent, CodeSheetComponent, CodeConceptComponent, CodeConceptSetComponent],
       providers: [{provide: ActivatedRoute, useValue: {params: from([{formName: 'test form'}])}},
         {provide: ConceptsService, useValue: conceptServiceMock}]
     })

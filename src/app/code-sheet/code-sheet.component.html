@@ -1,3 +1,15 @@
-<p>
-  code-sheet works!
-</p>
+<div class="sheet-name">Code Sheet: {{form.name}}</div>
+<div class="code-sheet-table">
+  <div class="table-header">
+    <p class="section">Section</p>
+    <p class="question">Question</p>
+    <p class="answer">Answers</p>
+  </div>
+  <div class="table-body">
+    <div *ngFor="let member of form.setMembers">
+      <app-code-concept *ngIf="!member.set && member.datatype === 'Coded'" [member]="member"
+                        [section]="'-'"></app-code-concept>
+      <app-code-concept-set *ngIf="member.set" [member]="member"></app-code-concept-set>
+    </div>
+  </div>
+</div>
