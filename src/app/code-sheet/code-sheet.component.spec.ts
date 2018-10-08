@@ -31,9 +31,9 @@ describe('CodeSheetComponent', () => {
 
     expect(compiled.getElementsByClassName('code-sheet-table')[0]).not.toBeNull();
     expect(compiled.getElementsByClassName('table-header')[0]).not.toBeNull();
-    expect(compiled.getElementsByClassName('section')[0]).not.toBeNull();
-    expect(compiled.getElementsByClassName('question')[0]).not.toBeNull();
-    expect(compiled.getElementsByClassName('answer')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-section')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-question')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-answer')[0]).not.toBeNull();
     expect(compiled.getElementsByClassName('table-body')[0]).not.toBeNull();
   });
 
@@ -42,7 +42,7 @@ describe('CodeSheetComponent', () => {
     component.form = {setMembers: '', name: 'Form Name'};
     fixture.detectChanges();
 
-    expect(compiled.getElementsByClassName('sheet-name')[0].textContent).toContain('Form Name');
+    expect(compiled.getElementsByClassName('code-sheet-name')[0].textContent).toContain('Form Name');
   });
 
   it('should have code-concept when a member is not set and datatype is coded', function () {

@@ -43,6 +43,8 @@ describe('FormComponent', () => {
     formConfigBuilder = spyOn(FormConfigBuilder, 'build');
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
+    component.form = {};
+    fixture.detectChanges();
   });
 
   it('should create Form component', () => {
@@ -53,9 +55,7 @@ describe('FormComponent', () => {
     expect(component.name).toBe('test form');
   });
 
-  it('should display div element with class form, formName and btn-group', () => {
-    component.form = {};
-    fixture.detectChanges();
+  it('should display div element with class form, formName, btn-group and form/code-sheet/print buttons', () => {
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelectorAll('div')[0].getAttribute('class')).toEqual('form');
@@ -63,16 +63,39 @@ describe('FormComponent', () => {
     expect(compiled.querySelectorAll('div')[2].getAttribute('class')).toEqual('tab-group');
   });
 
+  it('should have all three buttons inside tab-group', function () {
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.getElementsByClassName('btn').length).toBe(2);
+    expect(compiled.getElementsByClassName('print-button').length).toBe(1);
+
+  });
+
+  it('should call printForm method on click of print button', async ( () => {
+    spyOn(component, 'printForm');
+
+    const button = fixture.debugElement.nativeElement.getElementsByClassName('print-button')[0];
+    button.click();
+
+    fixture.whenStable().then(() => {
+      expect(component.printForm).toHaveBeenCalled();
+    });
+  }));
+
+  it('should call print method of window after calling print method', function () {
+    spyOn(window, 'print');
+    component.printForm();
+    expect(window.print).toHaveBeenCalled();
+
+  });
+
   it('should have active in form-button-class attribute by default', function () {
-    component.form = {};
-    fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelectorAll('button')[0].getAttribute('class')).toContain('active');
   });
 
   it('should have active in code-sheet-button class attribute when isFormSelected is false', function () {
-    component.form = {};
     component.isFormSelected = false;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

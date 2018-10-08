@@ -37,4 +37,8 @@ export class FormComponent {
   setIsFormSelected(value) {
     this.isFormSelected = value;
   }
+
+  printForm() {
+    window.print();
+  }
 }

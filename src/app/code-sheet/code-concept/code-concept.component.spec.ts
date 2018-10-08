@@ -30,12 +30,12 @@ describe('CodeConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('concept')[0]).not.toBeNull();
-    expect(compiled.getElementsByClassName('section')[0]).not.toBeNull();
-    expect(compiled.getElementsByClassName('section')[0].textContent).toContain('test section');
-    expect(compiled.getElementsByClassName('question')[0]).not.toBeNull();
-    expect(compiled.getElementsByClassName('question')[0].textContent).toContain('Test Question');
-    expect(compiled.getElementsByClassName('answer')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-concept')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-section')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-section')[0].textContent).toContain('test section');
+    expect(compiled.getElementsByClassName('code-sheet-question')[0]).not.toBeNull();
+    expect(compiled.getElementsByClassName('code-sheet-question')[0].textContent).toContain('Test Question');
+    expect(compiled.getElementsByClassName('code-sheet-answer')[0]).not.toBeNull();
   });
 
   it('should display all answers in `p` tag', function () {
@@ -44,10 +44,10 @@ describe('CodeConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('answer-text').length).toBe(3);
-    expect(compiled.getElementsByClassName('answer-text')[0].textContent).toContain('Test-answer1');
-    expect(compiled.getElementsByClassName('answer-text')[1].textContent).toContain('Test-answer2');
-    expect(compiled.getElementsByClassName('answer-text')[2].textContent).toContain('Test-answer3');
+    expect(compiled.getElementsByClassName('code-sheet-answer-text').length).toBe(3);
+    expect(compiled.getElementsByClassName('code-sheet-answer-text')[0].textContent).toContain('Test-answer1');
+    expect(compiled.getElementsByClassName('code-sheet-answer-text')[1].textContent).toContain('Test-answer2');
+    expect(compiled.getElementsByClassName('code-sheet-answer-text')[2].textContent).toContain('Test-answer3');
   });
 
   it('should not display any answers in `p` tag when answers is empty ', function () {
@@ -56,7 +56,7 @@ describe('CodeConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('answer-text').length).toBe(0);
+    expect(compiled.getElementsByClassName('code-sheet-answer-text').length).toBe(0);
   });
 
   it('should not display any answers in `p` tag when answers is undefined ', function () {
@@ -65,7 +65,7 @@ describe('CodeConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('answer-text').length).toBe(0);
+    expect(compiled.getElementsByClassName('code-sheet-answer-text').length).toBe(0);
   });
 
 });

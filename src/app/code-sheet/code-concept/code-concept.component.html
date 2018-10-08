@@ -1,9 +1,10 @@
-<div class="concept">
-  <p class="section">{{section}}</p>
-  <p class="question">{{member.name}}</p>
-  <div class="answer">
-    <p class="answer-text" *ngFor="let answer of member.answers">
+<div class="code-sheet-concept">
+  <p class="code-sheet-section">{{section}}</p>
+  <p class="code-sheet-question">{{member.name}}</p>
+  <div class="code-sheet-answer">
+    <p class="code-sheet-answer-text" *ngFor="let answer of member.answers">
       {{answer}}
     </p>
   </div>
 </div>
+
