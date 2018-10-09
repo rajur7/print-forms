@@ -5,3 +5,15 @@
   width: 100%;
   border-top: none;
 }
+
+.code-sheet-answer{
+  width: 100%;
+}
+
+.answer-row{
+  display: flex;
+}
+.answer-column{
+  flex: 1;
+  margin-right: 1%;
+}

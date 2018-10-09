@@ -1,10 +1,15 @@
 <div class="code-sheet-concept">
-  <p class="code-sheet-section">{{section}}</p>
   <p class="code-sheet-question">{{member.name}}</p>
   <div class="code-sheet-answer">
-    <p class="code-sheet-answer-text" *ngFor="let answer of member.answers">
-      {{answer}}
-    </p>
+    <div *ngFor="let answer of member.answers; let i = index">
+      <div class="answer-row" *ngIf="i%3 == 0">
+        <p class="answer-column" *ngIf="i < member.answers.length">[{{i+1}}] {{member.answers[i]}} </p>
+        <p class="answer-column"  *ngIf="i+1 < member.answers.length">[{{i+2}}] {{member.answers[i+1]}} </p>
+        <p class="answer-column" *ngIf="i+1 >= member.answers.length"></p>
+        <p class="answer-column" *ngIf="i+2 < member.answers.length">[{{i+3}}] {{member.answers[i+2]}} </p>
+        <p class="answer-column" *ngIf="i+2 >= member.answers.length"></p>
+      </div>
+    </div>
   </div>
 </div>
 

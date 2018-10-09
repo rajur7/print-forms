@@ -119,14 +119,14 @@ describe('ConceptComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('test-dateformat')[0].textContent.trim()).toEqual('(DD/MM/YYYY)');
+    expect(compiled.getElementsByClassName('date-format')[0].textContent.trim()).toEqual('(DD/MM/YYYY)');
   });
 
   it('should not add DD/MM/YYYY to label when dataType is not date ', function () {
     component.member = { name : 'test member', datatype: 'Text'};
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.getElementsByClassName('test-dateformat').length).toBe(0);
+    expect(compiled.getElementsByClassName('date-format').length).toBe(0);
   });
 
   it('should have notes label when  config is not given  ', function () {
