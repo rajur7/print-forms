@@ -30,7 +30,7 @@ body {
     width: 85% !important;
     padding-left: 10px;
   }
-  .concept {
+  .concept , .answer-column, .answer-row{
     page-break-inside: avoid !important;
   }
   .concept-set-section {
