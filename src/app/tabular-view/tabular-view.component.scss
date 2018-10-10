@@ -5,7 +5,7 @@
 }
 
 .container-element {
-  border: 1px solid #ddd;
+  border: 1px solid #000;
   flex: 1;
   padding-bottom: 2%;
 }
@@ -25,16 +25,15 @@ strong {
   font-size: 11px;
   border-collapse: collapse;
   border-spacing: 0;
-  background: #ddd;
   padding: 7px;
   font-weight: 700;
   width: auto;
   word-break: normal;
   text-align: left;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #000;
   vertical-align: inherit;
   display: flex;
   flex: 1;
-  color: #363463;;
+  page-break-inside: avoid;
 }
 
