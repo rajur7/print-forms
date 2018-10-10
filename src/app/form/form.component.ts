@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConceptsService } from '../concepts.service';
 import { FormConfigBuilder } from '../utils/form.config.builder';
 import { ConceptUtils } from '../utils/concept.utils';
@@ -19,6 +19,7 @@ export class FormComponent {
     this.route.params.subscribe(params => {
       this.name = params.formName;
       this.initializeForm();
+      this.scrollToTop();
     });
   }
 
@@ -40,5 +41,12 @@ export class FormComponent {
 
   printForm() {
     window.print();
+  }
+
+  private scrollToTop() {
+    const formElement = document.getElementsByClassName('form')[0];
+    if (formElement) {
+      formElement.scrollTop = 0;
+    }
   }
 }
