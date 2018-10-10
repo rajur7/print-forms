@@ -104,7 +104,7 @@ describe('TextBoxComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
-    expect(compiled.getElementsByClassName('hint')[0].textContent).toContain('(Use Code)');
+    expect(compiled.getElementsByClassName('hint')[0].textContent).toContain('(Refer to Code Sheet)');
   });
 
   it('should not add use code hint to label when datatype is not coded', function () {
